@@ -60,12 +60,11 @@ select * from accounts;
 select * from linked_accounts;
 ```
 
-As would be expected, this contains a single account line, with no linked accounts yet.\
-The username is the subject claim returned from Azure AD:
+As would be expected, this contains a single account line, with no linked accounts yet:
 
 | account_id | username | email |
 | ---------- | -------- | ----- |
-| 7a0b9310-4ae3-11ed-9054-0242ac120003 | FyOVI8ZfGEBca1kUsQ1HoYbnOLkJtkepGxnsMtYDZic | john.doe@company.com |
+| 7a0b9310-4ae3-11ed-9054-0242ac120003 | johndoe | john.doe@company.com |
 
 ## View Access Tokens
 
@@ -74,8 +73,9 @@ This shows the JWT that will be presented to your APIs by default:
 
 ![OAuth Tools Introspection](../images/1-default-behavior/oauth-tools-introspection.png)
 
-The access token continues to use a PPairwise Pseudonymous Identifier (PPID) for the subject claim.\
-This has the same data shape as tokens 
+The initial access token, once introspected, will contain fields such as these.
+The access token uses a Pairwise Pseudonymous Identifier (PPID) for the subject claim.
+This ID is a stable yet private identity that will be presented to your APIs:
 
 ```json
 {
@@ -91,8 +91,3 @@ This has the same data shape as tokens
   "purpose": "access_token"
 }
 ```
-
-## Further Account Linking
-
-After adopting Azure AD, if you need to perform additional account linking you can do so.\
-In this case the 

@@ -1,0 +1,5 @@
+1. Aim to get WebAuthn use case working by end of day
+
+2. Proof read and finalize README articles.
+   Better use of Debug authenticator to show external attributes
+   Use a dummy script to change PII attributes when required

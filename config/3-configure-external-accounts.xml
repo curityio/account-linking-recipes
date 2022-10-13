@@ -29,9 +29,9 @@
               </authentication-actions>
               <account-domain>local_domain</account-domain>
               <oidc xmlns="https://curity.se/ns/conf/authenticators/oidc">
-                <configuration-url>https://login.microsoftonline.com/7f071fbc-8bf2-4e61-bb48-dabd8e2f5b5a/v2.0/.well-known/openid-configuration</configuration-url>
-                <client-id>209772fd-e4b2-4715-9a85-1dd0d4c744a3</client-id>
-                <client-secret>data:text/plain;aes,v:S.cUh0S1dSRGdrNjgxVjRkVA==.aYRa99FdPaRwA70hVW0xDg==.CWZLrRZifZ3_ocIxU_Vl2VIOol-odV5vqh9YQMDnMz4eB0LCX5XnjKUV_hNCgJFl.OBNga1KNw88EBdLrvdgObBPwJzYVv448hEHHAWOFsck=</client-secret>
+                <configuration-url>$AZURE_AD_METADATA_URL</configuration-url>
+                <client-id>$AZURE_AD_CLIENT_ID</client-id>
+                <client-secret>$AZURE_AD_CLIENT_SECRET</client-secret>
                 <prompt-login>always</prompt-login>
               </oidc>
             </authenticator>
