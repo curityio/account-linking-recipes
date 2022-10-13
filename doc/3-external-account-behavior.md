@@ -31,8 +31,7 @@ It therefore uses an `Auto Create Account` option and is assigned a `local accou
 ## Perform an Azure AD Login
 
 Use OAuth Tools to run a code flow and you will now perform a federated login.\
-The Curity Identity Server uses the Authorization Server role.\
-Azure Active Directory uses the Identity Provider role.
+The Curity Identity Server uses the Authorization Server role and Azure AD acts as an Identity Provider:
 
 ![Azure AD Login](../images/3-external-account-behavior/azuread-login.png)
 
