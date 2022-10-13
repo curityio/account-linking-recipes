@@ -5,4 +5,13 @@
 ##########################################
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
+
+#
+# Free Docker resources
+#
 docker compose --project-name accountlinking down
+
+#
+# Close the NGROK tunnel if used
+#
+kill -9 $(pgrep ngrok) 2>/dev/null

@@ -5,23 +5,19 @@ Once each recipe is understood, it can also be adapted to other authentication p
 
 ## Prerequisites
 
-Ensure that Docker is installed and that a license file for the Curity Identity Server is copied to the root folder.
+- Ensure that Docker is installed 
+- Copy a license file for the Curity Identity Server is copied to the root folder
+- Install the ngrok tool to enable the use of online OAuth Tools for testing
 
 ## Use Case 1: Default Passwords
 
 Configure this use case with the following setup, to use default username and password based authentication:
 
 ```bash
+USE_NGROK=true
 ./deploy.sh
 ./apply-use-case.sh ./config/1-configure-default-passwords.xml
 ```
-
-Use OAuth Rools to run a code flow with these details.\
-On the login screen, choose the Create Account option, then sign in:
-
-- Client ID: demo-web-client
-- Client Secret: Password1
-- Scope: openid
 
 The [Default Identity Behavior](doc/1-default-behavior.md) document explains how identity data is used.
 
@@ -31,6 +27,7 @@ Next use Google as an extra login method, and link Google identities to accounts
 To test this scenario, redeploy the system with extra configuration:
 
 ```bash
+USE_NGROK=true
 ./deploy.sh
 export GOOGLE_CLIENT_ID='myclientid'
 export GOOGLE_CLIENT_SECRET='myclientsecret'
@@ -45,6 +42,7 @@ This scenario does not use the default password option and instead manages login
 The Azure AD identity becomes the main account, and other accounts can link to it:
 
 ```bash
+USE_NGROK=true
 ./deploy.sh
 ./apply-use-case.sh ./config/3-configure-external-accounts.xml
 ```
@@ -58,6 +56,7 @@ Some users can use passwords while others opt in to use of Webauthn keys when it
 This involves dynamic behavior to identify the user before choosing their authentication method.
 
 ```bash
+USE_NGROK=true
 ./deploy.sh
 ./apply-use-case.sh ./config/4-configure-migrating-to-passwordless.xml
 ```
