@@ -1,7 +1,7 @@
 # Account Linking Recipes
 
 Demonstrates some techniques for handling user accounts and access token identities for complex use cases.\
-Once each recipe is understood, it can be adapted to other authentication providers.
+Once each recipe is understood, it can also be adapted to other authentication providers.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Configure this use case with the following setup, to use default username and pa
 ```
 
 Use OAuth Rools to run a code flow with these details.\
-On the login screen, choose the Create Account option, then login:
+On the login screen, choose the Create Account option, then sign in:
 
 - Client ID: demo-web-client
 - Client Secret: Password1
@@ -27,11 +27,13 @@ The [Default Identity Behavior](doc/1-default-behavior.md) document explains how
 
 ## Use Case 2: Add an Extra Login Method
 
-This scenario adds Google as an extra login method, and links Google identities to accounts for existing and new users.\
+Next use Google as an extra login method, and link Google identities to accounts for existing and new users.\
 To test this scenario, redeploy the system with extra configuration:
 
 ```bash
 ./deploy.sh
+export GOOGLE_CLIENT_ID='myclientid'
+export GOOGLE_CLIENT_SECRET='myclientsecret'
 ./apply-use-case.sh ./config/2-configure-extra-login-method.xml
 ```
 
@@ -47,11 +49,12 @@ The Azure AD identity becomes the main account, and other accounts can link to i
 ./apply-use-case.sh ./config/3-configure-external-accounts.xml
 ```
 
-The [External Account Identity Data](doc/3-external-account-behavior.md) document explains how identity data is used.
+The [External Account Identity Behavior](doc/3-external-account-behavior.md) document explains how identity data is used.
 
 ## Use Case 4: Migrating to Passwordless
 
-This scenario demonstrates a phased migration from passwords to Webauthn keys, where users can opt in to use of secure devices.\
+This scenario demonstrates a phased migration from passwords to Webauthn keys.\
+Some users can use passwords while others opt in to use of Webauthn keys when it suits them.\
 This involves dynamic behavior to identify the user before choosing their authentication method.
 
 ```bash
@@ -59,8 +62,7 @@ This involves dynamic behavior to identify the user before choosing their authen
 ./apply-use-case.sh ./config/4-configure-migrating-to-passwordless.xml
 ```
 
-
-The [Migrating to Passwordless Identity Data](doc/4-migrating-to-passwordless-behavior.md) document explains how identity data is used.
+The [Migrating to Passwordless Behavior](doc/4-migrating-to-passwordless-behavior.md) document explains how identity data is used.
 
 ## Use Case 5: Mergers and Acquisitions
 
@@ -72,7 +74,7 @@ The tutorial shows how user logins can be consolidated and how APIs can then cal
 ./apply-use-case.sh ./config/5-configure-mergers-and-acquisitions.xml
 ```
 
-The [Mergers and Acquisitions Identity Data](doc/5-mergers-and-acquisitions-behavior.md) document explains how identity data is used.
+The [Mergers and Acquisitions Behavior](doc/5-mergers-and-acquisitions-behavior.md) document explains how identity data is used.
 
 ## Free Resources
 

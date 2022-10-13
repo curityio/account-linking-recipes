@@ -16,6 +16,15 @@ if [ ! -f "$USE_CASE_CONFIG_FILE_PATH" ]; then
 fi
 
 #
+# Set environment variables
+#
+envsubst < "$USE_CASE_CONFIG_FILE_PATH" > ./config/extra-config.xml
+if [ $? -ne 0 ]; then
+  echo 'Problem encountered updating configuration XML'
+  exit 1
+fi
+
+#
 # Ensure that the Identity Server is ready
 #
 echo 'Waiting for the Curity Identity Server ...'
@@ -31,7 +40,7 @@ HTTP_STATUS=$(curl -k -s \
 -X PATCH "$RESTCONF_BASE_URL" \
 -u "$ADMIN_USER:$ADMIN_PASSWORD" \
 -H 'Content-Type: application/yang-data+xml' \
--d @"$USE_CASE_CONFIG_FILE_PATH" \
+-d @./config/extra-config.xml \
 -o restconf_response.txt -w '%{http_code}')
 if [ "$HTTP_STATUS" != '204' ]; then
   echo "Problem encountered updating the configuration: $HTTP_STATUS"

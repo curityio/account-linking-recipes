@@ -9,7 +9,7 @@ services:
      - 8443:8443
     volumes:
      - ./license.json:/opt/idsvr/etc/init/license/license.json
-     - ./config/base-config.xml:/opt/idsvr/etc/init/config.xml
+     - ./config/0-base-config.xml:/opt/idsvr/etc/init/config.xml
     environment:
       ADMIN: 'true'
       PASSWORD: 'Password1'

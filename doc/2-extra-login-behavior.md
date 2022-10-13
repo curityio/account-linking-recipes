@@ -1,3 +1,3 @@
 # Extra Login Identity Behavior
 
-TODO
+Link to postgres setup, then query a linked account
