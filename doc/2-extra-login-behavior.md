@@ -80,3 +80,8 @@ To do so, send this parameter from OAuth Tools:
 ```text
 acr_values=urn:se:curity:authentication:google:google
 ```
+
+## Further Details
+
+A number of authentication actions are used in this type of flow.\
+For full details on configuration and usage, see the [Account Linking with Facebook](https://curity.io/resources/learn/account-linking-with-facebook/) tutorial.

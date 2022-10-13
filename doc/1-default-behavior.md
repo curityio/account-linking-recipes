@@ -60,11 +60,12 @@ select * from accounts;
 select * from linked_accounts;
 ```
 
-As you would expect, this contains a single account line, with no linked accounts yet:
+As would be expected, this contains a single account line, with no linked accounts yet.\
+The username is the subject claim returned from Azure AD:
 
 | account_id | username | email |
 | ---------- | -------- | ----- |
-| 0cee591a-461b-11ed-8779-0242c0a89002 | johndoe | john.doe@company.com |
+| 7a0b9310-4ae3-11ed-9054-0242ac120003 | FyOVI8ZfGEBca1kUsQ1HoYbnOLkJtkepGxnsMtYDZic | john.doe@company.com |
 
 ## View Access Tokens
 
@@ -73,21 +74,25 @@ This shows the JWT that will be presented to your APIs by default:
 
 ![OAuth Tools Introspection](../images/1-default-behavior/oauth-tools-introspection.png)
 
-The initial access token, once introspected, will contain fields such as these.\
-The access token uses a Pairwise Pseudonymous Identifier (PPID) for the subject claim.\
-This ID is a stable yet private identity that will be presented to your APIs:
+The access token continues to use a PPairwise Pseudonymous Identifier (PPID) for the subject claim.\
+This has the same data shape as tokens 
 
 ```json
 {
-  "jti": "678605ec-5979-4dea-ac32-673fe5e65b2b",
-  "delegationId": "c02167cd-2cdd-4a1b-b806-3c7476568c6e",
-  "exp": 1665134652,
-  "nbf": 1665134352,
+  "jti": "fb1b2e48-7860-4302-8f42-0f77397158ed",
+  "delegationId": "1ce1b16e-03f2-4985-8750-6dc6817e02f6",
+  "exp": 1665661040,
+  "nbf": 1665660740,
   "scope": "openid",
-  "iss": "https://idsvr.example.com/oauth/v2/oauth-anonymous",
-  "sub": "642a797c311f0b7aef3db4e0a292bc69b924e6496d1e87aa3b28672c01611da7",
-  "aud": "demo-client",
-  "iat": 1665134352,
+  "iss": "https://c81d-2-26-218-24.eu.ngrok.io/oauth/v2/oauth-anonymous",
+  "sub": "35996a48baa64ac46614349b134e867276f199db5b392e42900142134a723e51",
+  "aud": "demo-web-client",
+  "iat": 1665660740,
   "purpose": "access_token"
 }
 ```
+
+## Further Account Linking
+
+After adopting Azure AD, if you need to perform additional account linking you can do so.\
+In this case the 

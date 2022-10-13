@@ -1,1 +1,74 @@
-TODO
+<data xmlns="urn:ietf:params:xml:ns:yang:ietf-restconf">
+  <profiles xmlns="https://curity.se/ns/conf/base">    
+    <profile>
+      <id>authentication-service</id>
+      <type xmlns:auth="https://curity.se/ns/conf/profile/authentication">auth:authentication-service</type>
+      <settings>
+        <authentication-service xmlns="https://curity.se/ns/conf/profile/authentication">
+          <account-domains>
+            <account-domain>
+              <id>local_domain</id>
+              <description>The domain that manages the main account record</description>
+            </account-domain>
+          </account-domains>
+          <authentication-actions>
+            <authentication-action>
+              <id>autocreate</id>
+              <auto-create-account xmlns="https://curity.se/ns/ext-conf/auto-create-account">
+                <account-manager>
+                  <id>default-account-manager</id>
+                </account-manager>
+              </auto-create-account>
+            </authentication-action>
+          </authentication-actions>
+          <authenticators>
+            <authenticator>
+              <id>AzureAD</id>
+              <authentication-actions>
+                <login>autocreate</login>
+              </authentication-actions>
+              <account-domain>local_domain</account-domain>
+              <oidc xmlns="https://curity.se/ns/conf/authenticators/oidc">
+                <configuration-url>https://login.microsoftonline.com/7f071fbc-8bf2-4e61-bb48-dabd8e2f5b5a/v2.0/.well-known/openid-configuration</configuration-url>
+                <client-id>209772fd-e4b2-4715-9a85-1dd0d4c744a3</client-id>
+                <client-secret>data:text/plain;aes,v:S.cUh0S1dSRGdrNjgxVjRkVA==.aYRa99FdPaRwA70hVW0xDg==.CWZLrRZifZ3_ocIxU_Vl2VIOol-odV5vqh9YQMDnMz4eB0LCX5XnjKUV_hNCgJFl.OBNga1KNw88EBdLrvdgObBPwJzYVv448hEHHAWOFsck=</client-secret>
+                <prompt-login>always</prompt-login>
+              </oidc>
+            </authenticator>
+          </authenticators>
+          <protocols>
+            <protocol>
+              <id>default-simple-protocol</id>
+              <simple-api/>
+            </protocol>
+          </protocols>
+        </authentication-service>
+      </settings>
+      <endpoints>
+        <endpoint>
+          <id>authentication-service-anonymous</id>
+          <uri>/authn/anonymous</uri>
+          <endpoint-kind>auth-anonymous</endpoint-kind>
+        </endpoint>
+        <endpoint>
+          <id>authentication-service-authentication</id>
+          <uri>/authn/authentication</uri>
+          <endpoint-kind>auth-authentication</endpoint-kind>
+        </endpoint>
+        <endpoint>
+          <id>authentication-service-registration</id>
+          <uri>/authn/registration</uri>
+          <endpoint-kind>auth-registration</endpoint-kind>
+        </endpoint>
+      </endpoints>
+      <token-issuers>
+        <default-token-issuer>
+          <jwt-issuer-settings>
+            <signing-key-id>default-signing-key</signing-key-id>
+          </jwt-issuer-settings>
+          <default-data-source>default-datasource</default-data-source>
+        </default-token-issuer>
+      </token-issuers>
+    </profile>
+  </profiles>
+</data>

@@ -14,7 +14,7 @@ Once each recipe is understood, it can also be adapted to other authentication p
 Configure this use case with the following setup, to use default username and password based authentication:
 
 ```bash
-USE_NGROK=true
+export USE_NGROK=true
 ./deploy.sh
 ./apply-use-case.sh ./config/1-configure-default-passwords.xml
 ```
@@ -27,10 +27,10 @@ Next use Google as an extra login method, and link Google identities to accounts
 To test this scenario, redeploy the system with extra configuration:
 
 ```bash
-USE_NGROK=true
-./deploy.sh
+export USE_NGROK=true
 export GOOGLE_CLIENT_ID='myclientid'
 export GOOGLE_CLIENT_SECRET='myclientsecret'
+./deploy.sh
 ./apply-use-case.sh ./config/2-configure-extra-login-method.xml
 ```
 
@@ -42,7 +42,10 @@ This scenario does not use the default password option and instead manages login
 The Azure AD identity becomes the main account, and other accounts can link to it:
 
 ```bash
-USE_NGROK=true
+export USE_NGROK=true
+export AZURE_AD_METADATA_URL='https://login.microsoftonline.com/mytenantid/v2.0/.well-known/openid-configuration'
+export AZURE_AD_CLIENT_ID='myclientid'
+export AZURE_AD_CLIENT_SECRET='myclientsecret'
 ./deploy.sh
 ./apply-use-case.sh ./config/3-configure-external-accounts.xml
 ```
@@ -56,7 +59,7 @@ Some users can use passwords while others opt in to use of Webauthn keys when it
 This involves dynamic behavior to identify the user before choosing their authentication method.
 
 ```bash
-USE_NGROK=true
+export USE_NGROK=true
 ./deploy.sh
 ./apply-use-case.sh ./config/4-configure-migrating-to-passwordless.xml
 ```
@@ -69,6 +72,7 @@ This scenario demonstrates a parent company acquiring a partner, where different
 The tutorial shows how user logins can be consolidated and how APIs can then call each other.
 
 ```bash
+export USE_NGROK=true
 ./deploy.sh
 ./apply-use-case.sh ./config/5-configure-mergers-and-acquisitions.xml
 ```
