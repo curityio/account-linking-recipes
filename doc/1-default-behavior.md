@@ -64,7 +64,7 @@ As you would expect, this contains a single account line, with no linked account
 
 | account_id | username | email |
 | ---------- | -------- | ----- |
-| 0cee591a-461b-11ed-8779-0242c0a89002 | johndoe | john.doe@gmail.com |
+| 0cee591a-461b-11ed-8779-0242c0a89002 | johndoe | john.doe@company.com |
 
 ## View Access Tokens
 
