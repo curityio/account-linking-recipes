@@ -9,7 +9,7 @@ Configure OAuth Tools to point to your instance of the Curity Identity Server.\
 Provide a URL of the following form to create an environment:
 
 ```text
-https://c81d-2-26-218-24.eu.ngrok.io/oauth/v2/oauth-anonymous/.well-known/openid-configuration`:
+https://c81d-2-26-218-24.eu.ngrok.io/oauth/v2/oauth-anonymous/.well-known/openid-configuration
 ```
 
 ![OAuth Tools Environment](../images/1-default-behavior/oauth-tools-environment.png)
@@ -34,7 +34,7 @@ Then perform your initial password login:
 
 ## Database Behavior
 
-A postgres SQL database is deployed with the Curity Identity Server, to store user accounts.\
+A PostgreSQL database is deployed with the Curity Identity Server, to store user accounts.\
 This data is reset on every deployment, so that you must re-register users.\
 This enables the initial account linking and subsequent logins to be run many times.
 
@@ -71,11 +71,11 @@ As you would expect, this contains a single account line, with no linked account
 Upon return to OAuth Tools, redeem the code for tokens and introspect the access token.\
 This shows the JWT that will be presented to your APIs by default:
 
-![OAuth Tools Introspection](../images/1-default-behavior/oauth-tools-introspect.png)
+![OAuth Tools Introspection](../images/1-default-behavior/oauth-tools-introspection.png)
 
 The initial access token, once introspected, will contain fields such as these.\
-The access token uses a Pairwise Pseudonymous Identifiers (PPID) for the subject claim.\
-This ID is a stable yet private value that will be presented to your APIs:
+The access token uses a Pairwise Pseudonymous Identifier (PPID) for the subject claim.\
+This ID is a stable yet private identity that will be presented to your APIs:
 
 ```json
 {
