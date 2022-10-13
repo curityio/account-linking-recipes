@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+
+  curity-idsvr:
+    image: curity.azurecr.io/curity/idsvr:7.4.0
+    hostname: identityserver
+    ports:
+     - 6749:6749
+     - 8443:8443
+    volumes:
+     - ./license.json:/opt/idsvr/etc/init/license/license.json
+     - ./config/base-config.xml:/opt/idsvr/etc/init/config.xml
+    environment:
+      ADMIN: 'true'
+      PASSWORD: 'Password1'
+      LOGGING_LEVEL: 'INFO'
+      RUNTIME_BASE_URL: "${RUNTIME_BASE_URL}"
+
+  curity-data:
+    image: postgres:14.5
+    hostname: dbserver
+    ports:
+     - 5432:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./data-backup.sql:/docker-entrypoint-initdb.d/data-backup.sql
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'Password1'
+      POSTGRES_DB: 'idsvr'
