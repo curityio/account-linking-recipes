@@ -1,12 +1,11 @@
 # Migrating to Passwordless Identity Behavior
 
-This page describes shows to dynamically change the primary authentication factor.\
-By default users login with passwords, but each user opt into use of Webauthn keys when it suits them.\
-This enables a phased migration, to improve both security and usability.
+This page describes shows how passwordless login can be introduced gradually, with a user opt-in model.\
+This is done by identifying the user, then setting the primary aithentication factor dynamically.
 
 ## Example Scenario
 
-There are many security solutions that can be designed with Webauthn.\
+There are many security solutions that could be designed with Webauthn.\
 In this scenario, internet users can either login with a password, or can bring their own Webauthn platform device.\
 Once the Webauthn device is registered they no longer use password based logins.
 
