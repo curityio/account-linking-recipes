@@ -1,7 +1,7 @@
 # External Accounts Identity Behavior
 
-This describes how to use an external account as the main account, with no use of default passwords.\
-The external system in this example is Azure Active Directory.
+This describes how to use an external account as your main account, and bypass use of usernames and passwords.\
+This example uses a federated login to Azure Active Directory as the main account.
 
 ## Configure Azure Active Directory
 
@@ -17,7 +17,7 @@ See the [Azure AD Setup Tutorial](https://curity.io/resources/learn/oicd-authent
 ## Create an OpenID Connect Authenticator
 
 In the Curity Identity Server, create an OIDC authenticator and enter the corresponding details.\
-These will include the Azure AD metadata endpointm, which will be a value of this form:
+These will include the Azure AD metadata endpoint, which will be a value of this form:
 
 ```text
 https://login.microsoftonline.com/mytenantid/v2.0/.well-known/openid-configuration
@@ -36,6 +36,8 @@ The Curity Identity Server uses the Authorization Server role and Azure AD acts 
 ![Azure AD Login](../images/3-external-account-behavior/azuread-login.png)
 
 ## Query Account Data
+
+After login you can query account
 
 If you query data you will see that there is a single account record and no linked accounts.\
 The data shape is the same as the default password behavior.\

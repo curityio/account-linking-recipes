@@ -17,8 +17,7 @@ In the Admin UI, the Google Authenticator will then be configured with account l
 
 ## Perform an Initial Google Login
 
-First an authentication selection screen is presented.\
-Each user can select the option that works best for them:
+First an authentication selection screen is presented, and each user can select the option that works best for them:
 
 ![Authentication Selection](../images/2-extra-login-behavior/authentication-selection.png)
 
@@ -26,18 +25,19 @@ Select Google and enter credentials when prompted:
 
 ![Google Login](../images/2-extra-login-behavior/google-login.png)
 
-The first time the user signs in via Google they are then prompted to provide an existing password based identity:
+The first time the user signs in via Google they are then prompted to provide an existing password based identity.\
+Completely new users will create a new account to register themselves:
 
 ![Password Login](../images/1-default-behavior/initial-login.png)
 
 ## Query Account Data
 
-If you re-query data you will see that it still contains a single account record.\
-There has been no duplication of identities.
+After running this flow you can query the account data, as described in the [Default Behavior](./1-default-behavior.md) page.\
+You will see that it still contains a single account record and there has been no duplication of identities:
 
 | account_id | username | email |
 | ---------- | -------- | ----- |
-| 0cee591a-461b-11ed-8779-0242c0a89002 | johndoe | john.doe@company.com |
+| 0cee591a-461b-11ed-8779-0242c0a89002 | john.doe@company.com | john.doe@company.com |
 
 There is now a linked_accounts record.\
 The combination of `linked_account_domain_name` and `linked_account_id` is globally unique:
@@ -74,7 +74,7 @@ The update to the new login method therefore has no impact on your APIs:
 ## Controlling Logins from Applications
 
 An application can bypass the authentication selection screen if required.\
-To do so, send this parameter from OAuth Tools:
+To do so, send this OpenID Connect parameter from OAuth Tools or your application:
 
 ```text
 acr_values=urn:se:curity:authentication:google:google
