@@ -1,12 +1,13 @@
 # Account Linking Recipes
 
-Demonstrates some techniques for handling user accounts and access token identities for complex use cases.\
-Once each recipe is understood, it can also be adapted to other authentication providers.
+Demonstrates techniques for handling user accounts and access token identities.\
+Once each recipe is understood, it can also be adapted to other authentication providers.\
+When required, the use of actions can scale to provide solutions to complex problems.
 
 ## Prerequisites
 
-- Ensure that Docker is installed 
-- Copy a license file for the Curity Identity Server is copied to the root folder
+- Ensure that Docker is installed
+- Copy a license file for the Curity Identity Server to the root folder
 - Install the ngrok tool to enable the use of online OAuth Tools for testing
 
 ## Use Case 1: Default Passwords
@@ -19,7 +20,7 @@ export USE_NGROK=true
 ./apply-use-case.sh ./config/1-configure-default-passwords.xml
 ```
 
-The [Default Identity Behavior](doc/1-default-behavior.md) document explains how identity data is used.
+The [Default Identity Behavior](doc/1-default-behavior.md) document explains this flow and its associated data.
 
 ## Use Case 2: Add an Extra Login Method
 
@@ -34,7 +35,7 @@ export GOOGLE_CLIENT_SECRET='myclientsecret'
 ./apply-use-case.sh ./config/2-configure-extra-login-method.xml
 ```
 
-The [Extra Login Identity Behavior](doc/2-extra-login-behavior.md) document explains how identity data is used.
+The [Extra Login Identity Behavior](doc/2-extra-login-behavior.md) document explains this flow and its associated data.
 
 ## Use Case 3: Use External Accounts
 
@@ -50,7 +51,7 @@ export AZURE_AD_CLIENT_SECRET='myclientsecret'
 ./apply-use-case.sh ./config/3-configure-external-accounts.xml
 ```
 
-The [External Account Identity Behavior](doc/3-external-account-behavior.md) document explains how identity data is used.
+The [External Account Identity Behavior](doc/3-external-account-behavior.md) document explains this flow and its associated data.
 
 ## Use Case 4: Migrating to Passwordless
 
@@ -64,7 +65,7 @@ export USE_NGROK=true
 ./apply-use-case.sh ./config/4-configure-migrating-to-passwordless.xml
 ```
 
-The [Migrating to Passwordless Behavior](doc/4-migrating-to-passwordless-behavior.md) document explains how identity data is used.
+The [Migrating to Passwordless Behavior](doc/4-migrating-to-passwordless-behavior.md) document explains this flow and its associated data.
 
 ## Use Case 5: Mergers and Acquisitions
 
@@ -77,7 +78,7 @@ export USE_NGROK=true
 ./apply-use-case.sh ./config/5-configure-mergers-and-acquisitions.xml
 ```
 
-The [Mergers and Acquisitions Behavior](doc/5-mergers-and-acquisitions-behavior.md) document explains how identity data is used.
+The [Mergers and Acquisitions Behavior](doc/5-mergers-and-acquisitions-behavior.md) document explains this flow and its associated data.
 
 ## Free Resources
 
