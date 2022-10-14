@@ -52,7 +52,7 @@ The user now has a passwordless user experience, which is more secure than passw
 
 New users cannot onboard solely with only a Webauthn key, since applications need details such as the username and email.\
 If the username authenticator is for a user that does not exist, the user is again prompted to authenticate.\
-At this point the user will create an account and complete the registration flow:
+At this point the user will create an account with an initial password and complete the registration flow:
 
 ![Webauthn Create Account](../images/1-default-behavior/create-account.png)
 

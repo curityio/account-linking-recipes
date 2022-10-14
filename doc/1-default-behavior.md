@@ -73,8 +73,8 @@ This shows the JWT that will be presented to your APIs by default:
 
 ![OAuth Tools Introspection](../images/1-default-behavior/oauth-tools-introspection.png)
 
-The initial access token, once introspected, will contain fields such as these.
-The access token uses a Pairwise Pseudonymous Identifier (PPID) for the subject claim.
+The initial access token, once introspected, will contain fields such as these.\
+The access token uses a [Pairwise Pseudonymous Identifier (PPID)](https://curity.io/resources/learn/ppid/) for the subject claim.\
 This ID is a stable yet private identity that will be presented to your APIs:
 
 ```json
