@@ -37,10 +37,8 @@ The Curity Identity Server uses the Authorization Server role and Azure AD acts 
 
 ## Query Account Data
 
-After login you can query account
-
-If you query data you will see that there is a single account record and no linked accounts.\
-The data shape is the same as the default password behavior.\
+After running this flow you can query the account data, as described in the [Default Behavior](./1-default-behavior.md) page.\
+You will see that there is a single account record and no linked accounts.\
 The username saved is the subject claim from the Azure AD system.
 
 | account_id | username | email |
@@ -49,7 +47,7 @@ The username saved is the subject claim from the Azure AD system.
 
 ## Future Account Linking
 
-You can then add further login methods in future, that can be linked to the main account.\
+You can then add further login methods in future, that can be linked to the Azure AD main account.\
 This will work in an equivalent way to that described in [Extra Login Behavior](./2-extra-login-behavior.md).
 
 ## Access Tokens
