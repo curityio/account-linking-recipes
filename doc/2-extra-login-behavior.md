@@ -6,8 +6,7 @@ This example adds Google logins in addition to the default usernames and passwor
 ## Configure Google Identity
 
 First use the Google Developer Console to create an OAuth Client ID.\
-Configure this to point to your instance of the Curity Identity Server.\
-Note that `Client ID` and `Client Secret` values.
+Configure this to point to your instance of the Curity Identity Server, and note the `Client ID` and `Client Secret` values.
 
 ![Google OAuth Client ID](../images/2-extra-login-behavior/google-oauth-client-id.png)
 
@@ -84,4 +83,4 @@ acr_values=urn:se:curity:authentication:google:google
 ## Further Details
 
 A number of authentication actions are used in this type of flow.\
-For full details on configuration and usage, see the [Account Linking with Facebook](https://curity.io/resources/learn/account-linking-with-facebook/) tutorial.
+The actions are described in detail for a different social provider, in the [Account Linking with Facebook](https://curity.io/resources/learn/account-linking-with-facebook/) tutorial.
