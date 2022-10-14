@@ -1,6 +1,6 @@
 # Migrating to Passwordless Identity Behavior
 
-This page describes shows how passwordless login can be introduced gradually, in an opt-in manner.\
+This page describes shows how passwordless logins can be introduced gradually, in an opt-in manner.\
 This is done by identifying the user, then setting the primary authentication factor dynamically.
 
 ## Example Scenario

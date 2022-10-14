@@ -47,7 +47,7 @@ export USE_NGROK=true
 export AZURE_AD_METADATA_URL='https://login.microsoftonline.com/mytenantid/v2.0/.well-known/openid-configuration'
 export AZURE_AD_CLIENT_ID='myclientid'
 export AZURE_AD_CLIENT_SECRET='myclientsecret'
-./deploy.sh
+./deploy.sh 
 ./apply-use-case.sh ./config/3-configure-external-accounts.xml
 ```
 
