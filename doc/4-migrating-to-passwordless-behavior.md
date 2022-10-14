@@ -1,7 +1,7 @@
 # Migrating to Passwordless Identity Behavior
 
-This page describes shows how passwordless login can be introduced gradually, with a user opt-in model.\
-This is done by identifying the user, then setting the primary aithentication factor dynamically.
+This page describes shows how passwordless login can be introduced gradually, in an opt-in manner.\
+This is done by identifying the user, then setting the primary authentication factor dynamically.
 
 ## Example Scenario
 
@@ -29,7 +29,7 @@ When the Webauthn option is selected, the user is prompted to register a device:
 ![Register Device](../images/4-migrating-to-passwordless-behavior/register-device.png)
 
 To onboard to Webauthn, the user must first authenticate with an existing credential.\
-In the example scenario this involves logging in with the password:
+In the example scenario this involves logging in with a username and password:
 
 ![Webauthn Create Account](../images/4-migrating-to-passwordless-behavior/webauthn-create-account.png)
 
@@ -41,30 +41,31 @@ The user then sees the following screen and is considered authenticated when the
 
 ![Registered Device](../images/4-migrating-to-passwordless-behavior/registered-device.png)
 
+## Subsequent Logins
+
+On all future logins the username authenticator is used first, with the autofilled username.\
+If the user has Webauthn keys registered, the selector screen is bypassed.\
+The user is then prompted to insert the YubiKey, and simply taps it to sign in.\
+The user now has a passwordless user experience, which is more secure than passwords, and also more user friendly.
+
 ## Onboarding Future Users
 
-New users cannot onboard solely with only a Webauthn key, since applications need details such as username and email.\
+New users cannot onboard solely with only a Webauthn key, since applications need details such as the username and email.\
 If the username authenticator is for a user that does not exist, the user is again prompted to authenticate.\
 At this point the user will create an account and complete the registration flow:
 
 ![Webauthn Create Account](../images/1-default-behavior/create-account.png)
 
-## Subsequent Logins
-
-On all future logins the username authenticator is used first, with the autofilled username.\
-When prompted, the user against inserts the YubiKey and taps it.\
-The user now has a passwordless user experience, which is more secure and also more user friendly.
-
 ## Account Data
 
-The PostgreSQL data will contain a single account record for either existing or future users:
+The PostgreSQL data will contain a single account record for each user:
 
 | account_id | username | email |
 | ---------- | -------- | ----- |
 | 65c4928a-4bab-11ed-bd06-0242ac120002 | john.doe@company.com | john.doe@company.com |
 
-Webauthn keys are stored in a `devices` table, and a simplified form of the data looks like this.\
-Multiple Webauthn keys can be linked to the account, with no duplication.
+Webauthn keys are stored in a `devices` table, and a simplified form of the data is shown below.\
+Multiple Webauthn keys can be registered, and they are all linked to the same identity.
 
 | account_id | device_id | type | publicKey |
 | ---------- | --------- | ---- | --------- |
