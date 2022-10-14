@@ -1,0 +1,167 @@
+<data xmlns="urn:ietf:params:xml:ns:yang:ietf-restconf">
+  <profiles xmlns="https://curity.se/ns/conf/base">
+    <profile>
+      <id>authentication-service</id>
+      <type xmlns:auth="https://curity.se/ns/conf/profile/authentication">auth:authentication-service</type>
+      <settings>
+        <authentication-service xmlns="https://curity.se/ns/conf/profile/authentication">
+          <account-domains>
+            <account-domain>
+              <id>google-domain</id>
+            </account-domain>
+            <account-domain>
+              <id>local-domain</id>
+            </account-domain>
+          </account-domains>
+          <authentication-actions>
+            <authentication-action>
+              <id>check-if-link-exists</id>
+              <switch xmlns="https://curity.se/ns/ext-conf/switch">
+                <case>
+                  <name>no-link</name>
+                  <condition-script>YXR0cmlidXRlcy5zdWJqZWN0LmxpbmtlZF9zdWJqZWN0ID09IG51bGw=</condition-script>
+                  <action>sequence</action>
+                </case>
+                <fail-if-no-match>false</fail-if-no-match>
+              </switch>
+            </authentication-action>
+            <authentication-action>
+              <id>check-link</id>
+              <resolve-linked-account-transformer xmlns="https://curity.se/ns/ext-conf/resolve-linked-account-transformer">
+                <linking-account-domain>
+                  <id>google-domain</id>
+                </linking-account-domain>
+                <linking-account-manager>
+                  <id>default-account-manager</id>
+                </linking-account-manager>
+                <original-subject-attribute-name>linked_subject</original-subject-attribute-name>
+              </resolve-linked-account-transformer>
+            </authentication-action>
+            <authentication-action>
+              <id>debug1</id>
+              <debug-attribute xmlns="https://curity.se/ns/ext-conf/debug-attribute"/>
+            </authentication-action>
+            <authentication-action>
+              <id>debug2</id>
+              <debug-attribute xmlns="https://curity.se/ns/ext-conf/debug-attribute"/>
+            </authentication-action>
+            <authentication-action>
+              <id>html-authenticator</id>
+              <multi-factor-condition xmlns="https://curity.se/ns/ext-conf/multi-factor-condition">
+                <subject-condition>
+                  <subject-pattern-condition>
+                    <subject-pattern>.*</subject-pattern>
+                    <second-factor>
+                      <id>htmlform</id>
+                    </second-factor>
+                  </subject-pattern-condition>
+                </subject-condition>
+              </multi-factor-condition>
+            </authentication-action>
+            <authentication-action>
+              <id>link</id>
+              <auto-link-account xmlns="https://curity.se/ns/ext-conf/auto-link-account">
+                <linking-account-domain>
+                  <id>local-domain</id>
+                </linking-account-domain>
+                <linking-account-manager>
+                  <id>default-account-manager</id>
+                </linking-account-manager>
+                <use-linked-account-as-main-account>true</use-linked-account-as-main-account>
+              </auto-link-account>
+            </authentication-action>
+            <authentication-action>
+              <id>resolve-link</id>
+              <resolve-linked-account-transformer xmlns="https://curity.se/ns/ext-conf/resolve-linked-account-transformer">
+                <linking-account-domain>
+                  <id>google-domain</id>
+                </linking-account-domain>
+                <linking-account-manager>
+                  <id>default-account-manager</id>
+                </linking-account-manager>
+                <fail-on-no-link>true</fail-on-no-link>
+              </resolve-linked-account-transformer>
+            </authentication-action>
+            <authentication-action>
+              <id>sequence</id>
+              <sequence xmlns="https://curity.se/ns/ext-conf/sequence">
+                <action>update-subject</action>
+                <action>html-authenticator</action>
+                <action>update-subject-before-save</action>
+                <action>debug1</action>
+                <action>link</action>
+                <action>resolve-link</action>
+              </sequence>
+            </authentication-action>
+            <authentication-action>
+              <id>update-subject</id>
+              <script-transformer xmlns="https://curity.se/ns/ext-conf/script-transformer">
+                <transformation-procedure>update-subject-proc</transformation-procedure>
+              </script-transformer>
+            </authentication-action>
+            <authentication-action>
+              <id>update-subject-before-save</id>
+              <script-transformer xmlns="https://curity.se/ns/ext-conf/script-transformer">
+                <transformation-procedure>update-subject-before-save</transformation-procedure>
+              </script-transformer>
+            </authentication-action>
+          </authentication-actions>
+          <authenticators>
+            <authenticator>
+              <id>google</id>
+              <authentication-actions>
+                <login>check-link</login>
+                <login>check-if-link-exists</login>
+              </authentication-actions>
+              <account-domain>google-domain</account-domain>
+              <google xmlns="https://curity.se/ns/conf/authenticators/google">
+                <client-id>$GOOGLE_CLIENT_ID</client-id>
+                <client-secret>$GOOGLE_CLIENT_SECRET</client-secret>
+                <prompt-select-account>always</prompt-select-account>
+              </google>
+            </authenticator>
+            <authenticator>
+              <id>htmlform</id>
+              <account-domain>local-domain</account-domain>
+              <html-form xmlns="https://curity.se/ns/conf/authenticators/html-form">
+                <account-manager>default-account-manager</account-manager>
+                <credential-manager>default-credential-manager</credential-manager>
+              </html-form>
+            </authenticator>
+          </authenticators>
+          <protocols>
+            <protocol>
+              <id>default-simple-protocol</id>
+              <simple-api/>
+            </protocol>
+          </protocols>
+        </authentication-service>
+      </settings>
+      <endpoints>
+        <endpoint>
+          <id>authentication-service-anonymous</id>
+          <uri>/authn/anonymous</uri>
+          <endpoint-kind>auth-anonymous</endpoint-kind>
+        </endpoint>
+        <endpoint>
+          <id>authentication-service-authentication</id>
+          <uri>/authn/authentication</uri>
+          <endpoint-kind>auth-authentication</endpoint-kind>
+        </endpoint>
+        <endpoint>
+          <id>authentication-service-registration</id>
+          <uri>/authn/registration</uri>
+          <endpoint-kind>auth-registration</endpoint-kind>
+        </endpoint>
+      </endpoints>
+      <token-issuers>
+        <default-token-issuer>
+          <jwt-issuer-settings>
+            <signing-key-id>default-signing-key</signing-key-id>
+          </jwt-issuer-settings>
+          <default-data-source>default-datasource</default-data-source>
+        </default-token-issuer>
+      </token-issuers>
+    </profile>
+  </profiles>
+</data>
