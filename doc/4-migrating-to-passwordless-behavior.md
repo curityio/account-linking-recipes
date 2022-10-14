@@ -58,6 +58,7 @@ At this point the user will create an account and complete the registration flow
 
 ## Account Data
 
+After running this flow you can query the account data, as described in the [Default Behavior](./1-default-behavior.md) page.
 The PostgreSQL data will contain a single account record for each user:
 
 | account_id | username | email |
