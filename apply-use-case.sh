@@ -11,7 +11,7 @@ ADMIN_PASSWORD='Password1'
 USE_CASE_CONFIG_FILE_PATH="$1"
 echo "$USE_CASE_CONFIG_FILE_PATH"
 if [ ! -f "$USE_CASE_CONFIG_FILE_PATH" ]; then
-  echo 'Please supply the path to a configuration file to apply-use-case.sh as a command line parameter'
+  echo 'Please supply a valid configuration file path to apply-use-case.sh as a command line parameter'
   exit 1
 fi
 

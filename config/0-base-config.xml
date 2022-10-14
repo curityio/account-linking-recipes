@@ -412,6 +412,14 @@
   <processing xmlns="https://curity.se/ns/conf/base">
     <procedures>
       <transformation-procedure>
+        <id>lookup-devices-proc</id>
+        <script>LyoqCiAqIFRoaXMgaXMgYW4gZXhhbXBsZSBwcm9jZWR1cmUgdGhhdCBwZXJmb3JtcyBubyB0cmFuc2Zvcm1hdGlvbgogKiBAcGFyYW0ge3NlLmN1cml0eS5pZGVudGl0eXNlcnZlci5wcm9jZWR1cmVzLmNvbnRleHQuVHJhbnNmb3JtYXRpb25Qcm9jZWR1cmVDb250ZXh0fSBjb250ZXh0CiAqIEByZXR1cm5zIHsqfQogKi8KZnVuY3Rpb24gcmVzdWx0KGNvbnRleHQpIHsKICB2YXIgYXR0cmlidXRlcyA9IGNvbnRleHQuYXR0cmlidXRlTWFwOwogIGF0dHJpYnV0ZXMud2ViYXV0aG4gPSBmYWxzZTsKICByZXR1cm4gYXR0cmlidXRlczsKfQ==</script>
+      </transformation-procedure>
+      <transformation-procedure>
+        <id>set-auth-condition-proc</id>
+        <script>LyoqCiAqIFRoaXMgaXMgYW4gZXhhbXBsZSBwcm9jZWR1cmUgdGhhdCBwZXJmb3JtcyBubyB0cmFuc2Zvcm1hdGlvbgogKiBAcGFyYW0ge3NlLmN1cml0eS5pZGVudGl0eXNlcnZlci5wcm9jZWR1cmVzLmNvbnRleHQuVHJhbnNmb3JtYXRpb25Qcm9jZWR1cmVDb250ZXh0fSBjb250ZXh0CiAqIEByZXR1cm5zIHsqfQogKi8KZnVuY3Rpb24gcmVzdWx0KGNvbnRleHQpIHsKICB2YXIgYXR0cmlidXRlcyA9IGNvbnRleHQuYXR0cmlidXRlTWFwOwogIGlmIChhdHRyaWJ1dGVzLmF1dGhtZXRob2QgPT09ICd3ZWJhdXRobicpIHsKICAgICAgYXR0cmlidXRlcy53ZWJhdXRobiA9IHRydWU7CiAgICAgIGF0dHJpYnV0ZXMuaHRtbGZvcm0gPSBmYWxzZTsKICB9IGVsc2UgewogICAgICBhdHRyaWJ1dGVzLndlYmF1dGhuID0gZmFsc2U7CiAgICAgIGF0dHJpYnV0ZXMuaHRtbGZvcm0gPSB0cnVlOwogIH0KICByZXR1cm4gYXR0cmlidXRlczsKfQ==</script>
+      </transformation-procedure>
+      <transformation-procedure>
         <id>update-subject-before-save</id>
         <script>LyoqCiAqIFRoaXMgaXMgYW4gZXhhbXBsZSBwcm9jZWR1cmUgdGhhdCBwZXJmb3JtcyBubyB0cmFuc2Zvcm1hdGlvbgogKiBAcGFyYW0ge3NlLmN1cml0eS5pZGVudGl0eXNlcnZlci5wcm9jZWR1cmVzLmNvbnRleHQuVHJhbnNmb3JtYXRpb25Qcm9jZWR1cmVDb250ZXh0fSBjb250ZXh0CiAqIEByZXR1cm5zIHsqfQogKi8KZnVuY3Rpb24gcmVzdWx0KGNvbnRleHQpIHsKICB2YXIgYXR0cmlidXRlcyA9IGNvbnRleHQuYXR0cmlidXRlTWFwOwogIGF0dHJpYnV0ZXMuc3ViamVjdCA9IGF0dHJpYnV0ZXMub3JpZ2luYWxfc3ViamVjdDsKICByZXR1cm4gYXR0cmlidXRlczsKfQ==</script>
       </transformation-procedure>
@@ -426,6 +434,7 @@
         <enable-registration>
           <account-verification-method>no-verification</account-verification-method>
         </enable-registration>
+        <username-is-email>true</username-is-email>
         <account-data-source>default-datasource</account-data-source>
       </account-manager>
     </account-managers>
