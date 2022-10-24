@@ -67,19 +67,6 @@ export USE_NGROK=true
 
 The [Migrating to Passwordless Behavior](doc/4-migrating-to-passwordless-behavior.md) document explains this flow and its associated data.
 
-## Use Case 5: Mergers and Acquisitions
-
-This scenario demonstrates a parent company acquiring a partner, where different IAM systems are used initially.\
-The tutorial shows how user logins can be consolidated and how APIs can then call each other.
-
-```bash
-export USE_NGROK=true
-./deploy.sh
-./apply-use-case.sh ./config/5-configure-mergers-and-acquisitions.xml
-```
-
-The [Mergers and Acquisitions Behavior](doc/5-mergers-and-acquisitions-behavior.md) document explains this flow and its associated data.
-
 ## Free Resources
 
 Run the following script to free up all Docker resources once you have finished testing:
