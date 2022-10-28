@@ -60,8 +60,8 @@ The [External Account Identity Behavior](doc/3-external-account-behavior.md) doc
 
 ## Use Case 4: Migrating to Passwordless
 
-This scenario demonstrates a phased migration from passwords to Webauthn keys.\
-Some users can use passwords while others opt in to use of Webauthn keys when it suits them.\
+This scenario demonstrates a phased migration from passwords to WebAuthn keys.\
+Some users can use passwords while others opt in to use of WebAuthn keys when it suits them.\
 This involves dynamic behavior to identify the user before choosing their authentication method.
 
 ```bash

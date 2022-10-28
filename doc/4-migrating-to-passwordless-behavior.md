@@ -5,32 +5,32 @@ This is done by identifying the user, then setting the primary authentication fa
 
 ## Example Scenario
 
-There are many security solutions that could be designed with Webauthn.\
-In this scenario, internet users can either login with a password, or can bring their own Webauthn platform device.\
-Once the Webauthn device is registered they no longer use password based logins.
+There are many security solutions that could be designed with WebAuthn.\
+In this scenario, internet users can either login with a password, or can bring their own WebAuthn platform device.\
+Once the WebAuthn device is registered they no longer use password based logins.
 
 ## Authentication Selection
 
 On every login a username authenticator is shown and the user provides their email.\
 This will only be typed on the initial login and then will be autofilled from a cookie:
 
-![Webauthn Username](../images/4-migrating-to-passwordless-behavior/webauthn-username.png)
+![WebAuthn Username](../images/4-migrating-to-passwordless-behavior/webauthn-username.png)
 
 A script action then runs to determine whether the user has a WebAuthn key registered.\
 If not then the user may choose how to sign in via a selector action.\
-Users who don't want to use Webauthn can continue to use the password option:
+Users who don't want to use WebAuthn can continue to use the password option:
 
 ![Authentication Selector](../images/4-migrating-to-passwordless-behavior/authentication-selector.png)
 
-## Webauthn Onboarding
+## First WebAuthn Login
 
-When the Webauthn option is selected, the user is prompted to register a device:
+When the WebAuthn option is selected, the user is prompted to register a device:
 
 ![Register Device](../images/4-migrating-to-passwordless-behavior/register-device.png)
 
-To onboard to Webauthn, the user must first register, via a custom form.\
+To onboard to WebAuthn, existing users must first authenticate via their current method:
 
-![Webauthn Create Account](../images/4-migrating-to-passwordless-behavior/webauthn-create-account.png)
+![Initial Login](../images/1-default-behavior/initial-login.png)
 
 Next the user selects the security key option, inserts a YubiKey into a USB port and taps it:
 
@@ -40,20 +40,23 @@ The user then sees the following screen and is considered authenticated when the
 
 ![Registered Device](../images/4-migrating-to-passwordless-behavior/registered-device.png)
 
-## Subsequent Logins
+## Subsequent WebAuthn Logins
 
 On all future logins the username authenticator is used first, with the autofilled username.\
-If the user has Webauthn keys registered, the selector screen is bypassed.\
+If the user has WebAuthn keys registered, the selector screen is bypassed.\
 The user is then prompted to insert the YubiKey, and simply taps it to sign in.\
 The user now has a passwordless user experience, which is more secure than passwords, and also more user friendly.
 
-## Onboarding Future Users
+## Future Users
 
-New users cannot onboard solely with only a Webauthn key, since applications need details such as the username and email.\
-If the username authenticator is for a user that does not exist, the user is again prompted to authenticate.\
-At this point the user will create an account with an initial password and complete the registration flow:
+Users whose email does not exist will be prompted to register.\
+Those who selected the password option will see the standard registration form:
 
-![Webauthn Create Account](../images/1-default-behavior/create-account.png)
+![Password Create Account](../images/1-default-behavior/create-account.png)
+
+Those who selected the Webauthn option will see a custom registration form:
+
+![WebAuthn Create Account](../images/4-migrating-to-passwordless-behavior/webauthn-create-account.jpg)
 
 ## Account Data
 
@@ -64,8 +67,8 @@ The PostgreSQL data will contain a single account record for each user:
 | ---------- | -------- | ----- |
 | 65c4928a-4bab-11ed-bd06-0242ac120002 | john.doe@company.com | john.doe@company.com |
 
-Webauthn keys are stored in a `devices` table, and a simplified form of the data is shown below.\
-Multiple Webauthn keys can be registered, and they are all linked to the same identity.
+WebAuthn keys are stored in a `devices` table, and a simplified form of the data is shown below.\
+Multiple WebAuthn keys can be registered, and they are all linked to the same identity.
 
 | account_id | device_id | type | publicKey |
 | ---------- | --------- | ---- | --------- |
@@ -74,7 +77,7 @@ Multiple Webauthn keys can be registered, and they are all linked to the same id
 ## Access Tokens
 
 Access tokens issued to applications will contain the same details and subject claim as previously.\
-So migrating to Webauthn will have no impact on your APIs:
+So migrating to WebAuthn will have no impact on your APIs:
 
 ```json
 {
