@@ -22,13 +22,13 @@ Users who don't want to use WebAuthn can continue to use the password option:
 
 ![Authentication Selector](../images/4-migrating-to-passwordless-behavior/authentication-selector.png)
 
-## First WebAuthn Login
+## Gradual User Migration to WebAuthn
 
-When the WebAuthn option is selected, the user is prompted to register a device:
+When an existing user selects WebAuthn, the user is prompted to register a device:
 
 ![Register Device](../images/4-migrating-to-passwordless-behavior/register-device.png)
 
-To onboard to WebAuthn, existing users must first authenticate via their current method:
+To onboard to WebAuthn, the user must first authenticate via their current method:
 
 ![Initial Login](../images/1-default-behavior/initial-login.jpg)
 
@@ -40,21 +40,18 @@ The user then sees the following screen and is considered authenticated when the
 
 ![Registered Device](../images/4-migrating-to-passwordless-behavior/registered-device.png)
 
-## Subsequent WebAuthn Logins
-
 On all future logins the username authenticator is used first, with the autofilled username.\
 If the user has WebAuthn keys registered, the selector screen is bypassed.\
-The user is then prompted to insert the YubiKey, and simply taps it to sign in.\
-The user now has a passwordless user experience, which is more secure than passwords, and also more user friendly.
+The user is then prompted to insert the YubiKey, and simply taps it to sign in.
 
 ## Future Users
 
-Users whose email does not exist will be prompted to register.\
-Those who selected the password option will see the standard registration form:
+New users, whose email does not exist, can continue to onboard and use either passwords or WebAuthn.\
+Those who selected the password option will use the standard registration form and set a password:
 
 ![Password Create Account](../images/1-default-behavior/create-account.jpg)
 
-Those who selected the Webauthn option will see a custom registration form:
+Those who selected the Webauthn option will instead use a passwordless registration form:
 
 ![WebAuthn Create Account](../images/4-migrating-to-passwordless-behavior/webauthn-create-account.jpg)
 
