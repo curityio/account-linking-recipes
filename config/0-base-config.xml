@@ -299,7 +299,7 @@
               <client>
                 <id>demo-web-client</id>
                 <client-name>demo-web-client</client-name>
-                <secret>$5$mUxe2gSXncUL5eLC$iS3hEmwGqFVl//ruK5Nvcd1L/shWW8SWkjmeIVujZ77</secret>
+                <secret>Password1</secret>
                 <redirect-uris>https://oauth.tools/callback/code</redirect-uris>
                 <scope>openid</scope>
                 <user-authentication>

@@ -67,19 +67,6 @@ export USE_NGROK=true
 
 The [Migrating to Passwordless Behavior](doc/4-migrating-to-passwordless-behavior.md) document explains this flow and its associated data.
 
-## Use Case 5: Passwordless
-
-This scenario demonstrates how to create a truly passwordless experience for your users, from day one
-(+ allowing the migration of already registered users — not yet implemented).
-
-```bash
-export USE_NGROK=true
-./deploy.sh
-./apply-use-case.sh ./config/5-configure-passwordless.xml
-```
-
-The [Passwordless Behavior](doc/5-passwordless-behavior.md) document explains this flow and its associated data.
-
 ## Free Resources
 
 Run the following script to free up all Docker resources once you have finished testing:
