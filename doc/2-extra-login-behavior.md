@@ -28,16 +28,16 @@ Select Google and enter credentials when prompted:
 The first time the user signs in via Google they are then prompted to provide an existing password based identity.\
 Completely new users will create a new account to register themselves:
 
-![Password Login](../images/1-default-behavior/initial-login.png)
+![Password Login](../images/1-default-behavior/initial-login.jpg)
 
 ## Query Account Data
 
 After running this flow you can query the account data, as described in the [Default Behavior](./1-default-behavior.md) page.\
 You will see that it still contains a single account record and there has been no duplication of identities:
 
-| account_id | username | email |
+| account_id | username | attributes |
 | ---------- | -------- | ----- |
-| 0cee591a-461b-11ed-8779-0242c0a89002 | john.doe@company.com | john.doe@company.com |
+| 0cee591a-461b-11ed-8779-0242c0a89002 | john.doe@company.com | given_name: John, family_name: Doe |
 
 There is now a linked_accounts record.\
 The combination of `linked_account_domain_name` and `linked_account_id` is globally unique:

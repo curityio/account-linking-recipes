@@ -26,11 +26,11 @@ Run a code flow with these details:
 
 Create an account when prompted, to save your user to the database:
 
-![Create Account](../images/1-default-behavior/create-account.png)
+![Create Account](../images/1-default-behavior/create-account.jpg)
 
 Then perform your initial password login:
 
-![Initial Login](../images/1-default-behavior/initial-login.png)
+![Initial Login](../images/1-default-behavior/initial-login.jpg)
 
 ## Database Behavior
 
@@ -64,7 +64,7 @@ As would be expected, this contains a single account line, with no linked accoun
 
 | account_id | username | phone | attributes |
 | ---------- | -------- | ----- | ---------- |
-| 7a0b9310-4ae3-11ed-9054-0242ac120003 | john.doe@company.com | 077334455 | given_name: John, family_name: Doe |
+| 7a0b9310-4ae3-11ed-9054-0242ac120003 | john.doe@company.com | 0773344 | given_name: John, family_name: Doe |
 
 ## View Access Tokens
 

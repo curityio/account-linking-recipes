@@ -30,7 +30,7 @@ When the WebAuthn option is selected, the user is prompted to register a device:
 
 To onboard to WebAuthn, existing users must first authenticate via their current method:
 
-![Initial Login](../images/1-default-behavior/initial-login.png)
+![Initial Login](../images/1-default-behavior/initial-login.jpg)
 
 Next the user selects the security key option, inserts a YubiKey into a USB port and taps it:
 
@@ -52,7 +52,7 @@ The user now has a passwordless user experience, which is more secure than passw
 Users whose email does not exist will be prompted to register.\
 Those who selected the password option will see the standard registration form:
 
-![Password Create Account](../images/1-default-behavior/create-account.png)
+![Password Create Account](../images/1-default-behavior/create-account.jpg)
 
 Those who selected the Webauthn option will see a custom registration form:
 
@@ -63,16 +63,16 @@ Those who selected the Webauthn option will see a custom registration form:
 After running this flow you can query the account data, as described in the [Default Behavior](./1-default-behavior.md) page.\
 The PostgreSQL data will contain a single account record for each user:
 
-| account_id | username | email |
-| ---------- | -------- | ----- |
-| 65c4928a-4bab-11ed-bd06-0242ac120002 | john.doe@company.com | john.doe@company.com |
+| account_id | username | phone | attributes |
+| ---------- | -------- | ----- | ---------- |
+| 65c4928a-4bab-11ed-bd06-0242ac120002 | john.doe@company.com | 0773344 | given_name: John, family_name: Doe |
 
 WebAuthn keys are stored in a `devices` table, and a simplified form of the data is shown below.\
 Multiple WebAuthn keys can be registered, and they are all linked to the same identity.
 
 | account_id | device_id | type | publicKey |
 | ---------- | --------- | ---- | --------- |
-| 65c4928a-4bab-11ed-bd06-0242ac120002 | 6f2761a2-6931-413d-8caa-00e4b4f015d3 | cross-platform | pQECAyYgASF ... |
+| 65c4928a-4bab-11ed-bd06-0242ac120002 | 6f2761a2-6931-413d-8caa-00e4b4f015d3 | webauthn | pQECAyYgASF ... |
 
 ## Access Tokens
 
