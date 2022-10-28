@@ -10,10 +10,10 @@ services:
     volumes:
      - ./license.json:/opt/idsvr/etc/init/license/license.json
      - ./config/0-base-config.xml:/opt/idsvr/etc/init/config.xml
+     - ./config/create-account.properties:/opt/idsvr/usr/share/messages/overrides/en/create-account.properties
     environment:
       ADMIN: 'true'
-      PASSWORD: 'Password1'
-      LOGGING_LEVEL: 'INFO'
+      LOGGING_LEVEL: 'DEBUG'
       RUNTIME_BASE_URL: "${RUNTIME_BASE_URL}"
 
   curity-data:

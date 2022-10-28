@@ -10,6 +10,11 @@ When required, the use of actions can scale to provide solutions to complex prob
 - Copy a license file for the Curity Identity Server to the root folder
 - Install the ngrok tool to enable the use of online OAuth Tools for testing
 
+## Deployed System
+
+The deployed system uses as Admin UI at `https://localhost:6749/admin` with a login of `admin / Password1`.\
+Use the Admin UI if you want to inspect the configuration, to understand the use of actions.
+
 ## Use Case 1: Default Passwords
 
 Configure this use case with the following setup, to use default username and password based authentication:
