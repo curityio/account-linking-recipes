@@ -62,9 +62,9 @@ select * from linked_accounts;
 
 As would be expected, this contains a single account line, with no linked accounts yet:
 
-| account_id | username | email |
-| ---------- | -------- | ----- |
-| 7a0b9310-4ae3-11ed-9054-0242ac120003 | johndoe | john.doe@company.com |
+| account_id | username | phone | attributes |
+| ---------- | -------- | ----- | ---------- |
+| 7a0b9310-4ae3-11ed-9054-0242ac120003 | john.doe@company.com | 077334455 | given_name: John, family_name: Doe |
 
 ## View Access Tokens
 

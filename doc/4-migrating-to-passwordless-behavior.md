@@ -28,8 +28,7 @@ When the Webauthn option is selected, the user is prompted to register a device:
 
 ![Register Device](../images/4-migrating-to-passwordless-behavior/register-device.png)
 
-To onboard to Webauthn, the user must first authenticate with an existing credential.\
-In the example scenario this involves logging in with a username and password:
+To onboard to Webauthn, the user must first register, via a custom form.\
 
 ![Webauthn Create Account](../images/4-migrating-to-passwordless-behavior/webauthn-create-account.png)
 
