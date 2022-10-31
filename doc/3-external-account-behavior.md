@@ -23,7 +23,7 @@ These will include the Azure AD metadata endpoint, which will be a value of this
 https://login.microsoftonline.com/mytenantid/v2.0/.well-known/openid-configuration
 ```
 
-![Azure AD Authenticator](../images/3-external-account-behavior/azuread-authenticator.png)
+![Azure AD Authenticator](../images/3-external-account-behavior/azuread-authenticator.jpg)
 
 This authenticator will be responsible for creating the main account record.\
 It therefore uses an `Auto Create Account` option and is assigned a `local account` domain.
@@ -33,7 +33,7 @@ It therefore uses an `Auto Create Account` option and is assigned a `local accou
 Use OAuth Tools to run a code flow and you will now perform a federated login.\
 The Curity Identity Server uses the Authorization Server role and Azure AD acts as an Identity Provider:
 
-![Azure AD Login](../images/3-external-account-behavior/azuread-login.png)
+![Azure AD Login](../images/3-external-account-behavior/azuread-login.jpg)
 
 ## Query Account Data
 

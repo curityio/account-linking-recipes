@@ -8,22 +8,22 @@ This example adds Google logins in addition to the default usernames and passwor
 First use the Google Developer Console to create an OAuth Client ID.\
 Configure this to point to your instance of the Curity Identity Server, and note the `Client ID` and `Client Secret` values.
 
-![Google OAuth Client ID](../images/2-extra-login-behavior/google-oauth-client-id.png)
+![Google OAuth Client ID](../images/2-extra-login-behavior/google-oauth-client-id.jpg)
 
 Supply the above Google values as environment variable in the deployment.\
 In the Admin UI, the Google Authenticator will then be configured with account linking actions:
 
-![Google Authenticator](../images/2-extra-login-behavior/google-authenticator.png)
+![Google Authenticator](../images/2-extra-login-behavior/google-authenticator.jpg)
 
 ## Perform an Initial Google Login
 
 First an authentication selection screen is presented, and each user can select the option that works best for them:
 
-![Authentication Selection](../images/2-extra-login-behavior/authentication-selection.png)
+![Authentication Selection](../images/2-extra-login-behavior/authentication-selection.jpg)
 
 Select Google and enter credentials when prompted:
 
-![Google Login](../images/2-extra-login-behavior/google-login.png)
+![Google Login](../images/2-extra-login-behavior/google-login.jpg)
 
 The first time the user signs in via Google they are then prompted to provide an existing password based identity.\
 Completely new users will create a new account to register themselves:

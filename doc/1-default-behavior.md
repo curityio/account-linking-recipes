@@ -12,7 +12,7 @@ Provide a URL of the following form to create an environment:
 https://c81d-2-26-218-24.eu.ngrok.io/oauth/v2/oauth-anonymous/.well-known/openid-configuration
 ```
 
-![OAuth Tools Environment](../images/1-default-behavior/oauth-tools-environment.png)
+![OAuth Tools Environment](../images/1-default-behavior/oauth-tools-environment.jpg)
 
 Run a code flow with these details:
 
@@ -20,7 +20,7 @@ Run a code flow with these details:
 - Client Secret: Password1
 - Scope: openid
 
-![OAuth Tools Code Flow](../images/1-default-behavior/oauth-tools-code-flow.png)
+![OAuth Tools Code Flow](../images/1-default-behavior/oauth-tools-code-flow.jpg)
 
 ## Register and Login
 
@@ -71,7 +71,7 @@ As would be expected, this contains a single account line, with no linked accoun
 Upon return to OAuth Tools, redeem the code for tokens and introspect the access token.\
 This shows the JWT that will be presented to your APIs by default:
 
-![OAuth Tools Introspection](../images/1-default-behavior/oauth-tools-introspection.png)
+![OAuth Tools Introspection](../images/1-default-behavior/oauth-tools-introspection.jpg)
 
 The initial access token, once introspected, will contain fields such as these.\
 The access token uses a [Pairwise Pseudonymous Identifier (PPID)](https://curity.io/resources/learn/ppid/) for the subject claim.\

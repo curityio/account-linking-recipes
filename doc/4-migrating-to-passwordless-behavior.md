@@ -14,19 +14,19 @@ Once the WebAuthn device is registered they no longer use password based logins.
 On every login a username authenticator is shown and the user provides their email.\
 This will only be typed on the initial login and then will be autofilled from a cookie:
 
-![WebAuthn Username](../images/4-migrating-to-passwordless-behavior/webauthn-username.png)
+![WebAuthn Username](../images/4-migrating-to-passwordless-behavior/webauthn-username.jpg)
 
 A script action then runs to determine whether the user has a WebAuthn key registered.\
 If not then the user may choose how to sign in via a selector action.\
 Users who don't want to use WebAuthn can continue to use the password option:
 
-![Authentication Selector](../images/4-migrating-to-passwordless-behavior/authentication-selector.png)
+![Authentication Selector](../images/4-migrating-to-passwordless-behavior/authentication-selector.jpg)
 
 ## Gradual User Migration to WebAuthn
 
 When an existing user selects WebAuthn, the user is prompted to register a device:
 
-![Register Device](../images/4-migrating-to-passwordless-behavior/register-device.png)
+![Register Device](../images/4-migrating-to-passwordless-behavior/register-device.jpg)
 
 To onboard to WebAuthn, the user must first authenticate via their current method:
 
@@ -34,11 +34,11 @@ To onboard to WebAuthn, the user must first authenticate via their current metho
 
 Next the user selects the security key option, inserts a YubiKey into a USB port and taps it:
 
-![Register Security Key](../images/4-migrating-to-passwordless-behavior/register-security-key.png)
+![Register Security Key](../images/4-migrating-to-passwordless-behavior/register-security-key.jpg)
 
 The user then sees the following screen and is considered authenticated when the proceed button is clicked:
 
-![Registered Device](../images/4-migrating-to-passwordless-behavior/registered-device.png)
+![Registered Device](../images/4-migrating-to-passwordless-behavior/registered-device.jpg)
 
 On all future logins the username authenticator is used first, with the autofilled username.\
 If the user has WebAuthn keys registered, the selector screen is bypassed.\
