@@ -1,13 +1,12 @@
 # Migrating to Passwordless Identity Behavior
 
 This page describes shows how passwordless logins can be introduced gradually, in an opt-in manner.\
-This is done by identifying the user, then setting the primary authentication factor dynamically.
+This enables existing users to upgrade from passwords to passwordless, without duplicating their account.
 
 ## Example Scenario
 
 There are many security solutions that could be designed with WebAuthn.\
-In this scenario, internet users can either login with a password, or can bring their own WebAuthn platform device.\
-Once the WebAuthn device is registered they no longer use password based logins.
+In this scenario, internet users can either login with a password, or can bring their own WebAuthn platform device.
 
 ## Authentication Selection
 
@@ -28,7 +27,8 @@ When an existing user selects WebAuthn, the user is prompted to register a devic
 
 ![Register Device](../images/4-migrating-to-passwordless-behavior/register-device.jpg)
 
-To onboard to WebAuthn, the user must first authenticate via their current method:
+To onboard to WebAuthn, the user must first authenticate via their current method.\
+This correctly links the user's WebAuthn device to their existing account:
 
 ![Initial Login](../images/1-default-behavior/initial-login.jpg)
 
@@ -40,7 +40,7 @@ The user then sees the following screen and is considered authenticated when the
 
 ![Registered Device](../images/4-migrating-to-passwordless-behavior/registered-device.jpg)
 
-On all future logins the username authenticator is used first, with the autofilled username.\
+On all future logins the username authenticator is displayed first, with the autofilled username.\
 If the user has WebAuthn keys registered, the selector screen is bypassed.\
 The user is then prompted to insert the YubiKey, and simply taps it to sign in.
 
