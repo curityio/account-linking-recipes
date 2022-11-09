@@ -3,6 +3,12 @@
 This describes how to use an external account as your main account, and bypass use of usernames and passwords.\
 This example uses a federated login to Azure Active Directory as the main account.
 
+## Requirements
+
+The following flow chart describes the desired behaviour of this flow.
+
+![Use case 3](../images/3-external-account-behavior/flow.png)
+
 ## Configure Azure Active Directory
 
 Login to the Azure Portal and create an OAuth client that redirects to your Curity Identity Server:

@@ -3,6 +3,12 @@
 This page describes shows how passwordless logins can be introduced gradually, in an opt-in manner.\
 This enables existing users to upgrade from passwords to passwordless, without duplicating their account.
 
+## Requirements
+
+The following flow chart describes the desired behaviour of this flow.
+
+![Use case 4](../images/4-migrating-to-passwordless-behavior/flow.png)
+
 ## Example Scenario
 
 There are many security solutions that could be designed with WebAuthn.\

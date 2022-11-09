@@ -3,6 +3,12 @@
 This describes how to introduce an extra form of login that may suit some users better.\
 This example adds Google logins in addition to the default usernames and passwords.
 
+## Requirements
+
+The following flow chart describes the desired behaviour of this flow.
+
+![Use case 2](../images/2-extra-login-behavior/flow.png)
+
 ## Configure Google Identity
 
 First use the Google Developer Console to create an OAuth Client ID.\
