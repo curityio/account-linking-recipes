@@ -3,6 +3,12 @@
 This describes how the main account is created when username and password authentication is used.\
 It also shows how access tokens convey this identity to APIs.
 
+## Requirements
+
+The following flow chart describes the desired behaviour of this flow.
+
+![Use case 1](../images/1-default-behavior/flow.png)
+
 ## Configure OAuth Tools
 
 Configure OAuth Tools to point to your instance of the Curity Identity Server.\
