@@ -38,16 +38,13 @@
               </resolve-linked-account-transformer>
             </authentication-action>
             <authentication-action>
-              <id>debug1</id>
-              <debug-attribute xmlns="https://curity.se/ns/ext-conf/debug-attribute"/>
-            </authentication-action>
-            <authentication-action>
-              <id>debug2</id>
+              <id>debug</id>
               <debug-attribute xmlns="https://curity.se/ns/ext-conf/debug-attribute"/>
             </authentication-action>
             <authentication-action>
               <id>html-authenticator</id>
               <multi-factor-condition xmlns="https://curity.se/ns/ext-conf/multi-factor-condition">
+                <disable-second-factor-subject-check>true</disable-second-factor-subject-check>
                 <subject-condition>
                   <subject-pattern-condition>
                     <subject-pattern>.*</subject-pattern>
@@ -85,25 +82,11 @@
             <authentication-action>
               <id>sequence</id>
               <sequence xmlns="https://curity.se/ns/ext-conf/sequence">
-                <action>update-subject</action>
                 <action>html-authenticator</action>
-                <action>update-subject-before-save</action>
-                <action>debug1</action>
+                <action>debug</action>
                 <action>link</action>
                 <action>resolve-link</action>
               </sequence>
-            </authentication-action>
-            <authentication-action>
-              <id>update-subject</id>
-              <script-transformer xmlns="https://curity.se/ns/ext-conf/script-transformer">
-                <transformation-procedure>update-subject-proc</transformation-procedure>
-              </script-transformer>
-            </authentication-action>
-            <authentication-action>
-              <id>update-subject-before-save</id>
-              <script-transformer xmlns="https://curity.se/ns/ext-conf/script-transformer">
-                <transformation-procedure>update-subject-before-save</transformation-procedure>
-              </script-transformer>
             </authentication-action>
           </authentication-actions>
           <authenticators>
