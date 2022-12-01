@@ -2,7 +2,7 @@ version: '3.8'
 services:
 
   curity-idsvr:
-    image: curity.azurecr.io/curity/idsvr:7.4.1
+    image: curity.azurecr.io/curity/idsvr:7.5.1
     hostname: identityserver
     ports:
      - 6749:6749
