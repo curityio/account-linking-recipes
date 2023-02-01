@@ -301,6 +301,7 @@
                 <client-name>demo-web-client</client-name>
                 <secret>Password1</secret>
                 <redirect-uris>https://oauth.tools/callback/code</redirect-uris>
+                <redirect-uris>oauth.tools://app/callback/code</redirect-uris>
                 <scope>openid</scope>
                 <user-authentication>
                 </user-authentication>
