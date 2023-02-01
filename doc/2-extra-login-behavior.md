@@ -89,4 +89,4 @@ acr_values=urn:se:curity:authentication:google:google
 ## Further Details
 
 A number of authentication actions are used in this type of flow.\
-The actions are described in detail for a different social provider, in the [Account Linking with Facebook](https://curity.io/resources/learn/account-linking-with-facebook/) tutorial.
+The actions are described in detail for a different social provider, in the [Account Linking with Social](https://curity.io/resources/learn/account-linking-with-social/) tutorial.
