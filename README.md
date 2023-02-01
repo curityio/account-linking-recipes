@@ -7,7 +7,7 @@ When required, the use of actions can scale to provide solutions to complex prob
 ## Prerequisites
 
 - Ensure that Docker is installed
-- Copy a license file for the Curity Identity Server to the root folder
+- Copy a license file for the Curity Identity Server to the root folder (named license.json)
 - Install the ngrok tool to enable the use of online OAuth Tools for testing
 
 ## Deployed System
