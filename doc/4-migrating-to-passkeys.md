@@ -1,7 +1,7 @@
-# Migrating to Passwordless Identity Behavior
+# Migrating to Passkeys Behavior
 
-This page describes shows how passwordless logins can be introduced gradually, in an opt-in manner.\
-This enables existing users to upgrade from passwords to passwordless, without duplicating their account.
+This page describes shows how logins with passkeys can be introduced in an opt-in manner.\
+This enables existing users to upgrade from passwords to passkeys, with the same user identity.
 
 ## Requirements
 
@@ -11,55 +11,51 @@ The following flow chart describes the desired behaviour of this flow.
 
 ## Example Scenario
 
-There are many security solutions that could be designed with WebAuthn.\
-In this scenario, internet users can either login with a password, or can bring their own WebAuthn platform device.
+There are many security solutions that could be designed with passkeys.\
+In this scenario, internet users can either login with a password, or can upgrade to a passkey.
 
 ## Authentication Selection
 
 On every login a username authenticator is shown and the user provides their email.\
 This will only be typed on the initial login and then will be autofilled from a cookie:
 
-![WebAuthn Username](../images/4-migrating-to-passwordless-behavior/webauthn-username.jpg)
+![Passkeys Username](../images/4-migrating-to-passwordless-behavior/passkeys-username.jpg)
 
-A script action then runs to determine whether the user has a WebAuthn key registered.\
+A script action then runs to determine whether the user has a passkey registered.\
 If not then the user may choose how to sign in via a selector action.\
-Users who don't want to use WebAuthn can continue to use the password option:
+Users who don't want to use passkeys can continue to use passwords:
 
 ![Authentication Selector](../images/4-migrating-to-passwordless-behavior/authentication-selector.jpg)
 
-## Gradual User Migration to WebAuthn
+## Existing Users
 
-When an existing user selects WebAuthn, the user is prompted to register a device:
+When an existing user chooses to first login with a passkey, the user is prompted to register a passkey:
 
-![Register Device](../images/4-migrating-to-passwordless-behavior/register-device.jpg)
+![Register Passkey](../images/4-migrating-to-passwordless-behavior/register-passkey.jpg)
 
-To onboard to WebAuthn, the user must first authenticate via their current method.\
-This correctly links the user's WebAuthn device to their existing account:
+To do so, the user must first authenticate via their current method:
 
 ![Initial Login](../images/1-default-behavior/initial-login.jpg)
 
-Next the user selects the security key option, inserts a YubiKey into a USB port and taps it:
-
-![Register Security Key](../images/4-migrating-to-passwordless-behavior/register-security-key.jpg)
-
+Next, the browser uses operating system APIs to create a passkey.
 The user then sees the following screen and is considered authenticated when the proceed button is clicked:
 
-![Registered Device](../images/4-migrating-to-passwordless-behavior/registered-device.jpg)
+![Registered Passkey](../images/4-migrating-to-passwordless-behavior/registered-passkey.jpg)
 
 On all future logins the username authenticator is displayed first, with the autofilled username.\
-If the user has WebAuthn keys registered, the selector screen is bypassed.\
-The user is then prompted to insert the YubiKey, and simply taps it to sign in.
+If the user has a passkey registered, the selector screen is bypassed.\
+The user is simply prompted to use their device authentication method to sign in, e.g. a fingerprint or PIN.
 
 ## Future Users
 
-New users, whose email does not exist, can continue to onboard and use either passwords or WebAuthn.\
+New users, whose email does not exist, can continue to onboard, with either passkeys or passwords.\
 Those who selected the password option will use the standard registration form and set a password:
 
 ![Password Create Account](../images/1-default-behavior/create-account.jpg)
 
-Those who selected the Webauthn option will instead use a passwordless registration form:
+Those who selected the passkeys option will instead use a custom registration form:
 
-![WebAuthn Create Account](../images/4-migrating-to-passwordless-behavior/webauthn-create-account.jpg)
+![Passkeys Create Account](../images/4-migrating-to-passwordless-behavior/passkeys-create-account.jpg)
 
 ## Account Data
 
@@ -70,17 +66,22 @@ The PostgreSQL data will contain a single account record for each user:
 | ---------- | -------- | ----- | ---------- |
 | 65c4928a-4bab-11ed-bd06-0242ac120002 | john.doe@company.com | 0773344 | given_name: John, family_name: Doe |
 
-WebAuthn keys are stored in a `devices` table, and a simplified form of the data is shown below.\
-Multiple WebAuthn keys can be registered, and they are all linked to the same identity.
+Passkeys are stored in a `devices` table, and a simplified form of the data is shown below:
 
 | account_id | device_id | type | publicKey |
 | ---------- | --------- | ---- | --------- |
 | 65c4928a-4bab-11ed-bd06-0242ac120002 | 6f2761a2-6931-413d-8caa-00e4b4f015d3 | webauthn | pQECAyYgASF ... |
 
+## Account Recovery
+
+When required, multiple passkeys can be registered by a user, and they are all linked to the same identity.\
+This enables the user to recover if they ever lose their existing passkey.\
+It also enables them to roam across devices when passkey synchronization is not supported.
+
 ## Access Tokens
 
 Access tokens issued to applications will contain the same details and subject claim as previously.\
-So migrating to WebAuthn will have no impact on your APIs:
+So migrating to passkeys will have no impact on your OAuth-secured APIs:
 
 ```json
 {

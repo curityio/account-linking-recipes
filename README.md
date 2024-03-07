@@ -58,19 +58,19 @@ export AZURE_AD_CLIENT_SECRET='myclientsecret'
 
 The [External Account Identity Behavior](doc/3-external-account-behavior.md) document explains this flow and its associated data.
 
-## Use Case 4: Migrating to Passwordless
+## Use Case 4: Migrating to Passkeys
 
-This scenario demonstrates a phased migration from passwords to WebAuthn keys.\
-Some users can use passwords while others opt in to use of WebAuthn keys when it suits them.\
-This involves dynamic behavior to identify the user before choosing their authentication method.
+This scenario demonstrates an opt-in migration from passwords to passkeys.\
+Users can upgrade to passkeys, or continue to use passwords if they prefer.\
+Dynamic behavior is used to identify the user's authentication method.
 
 ```bash
 export USE_NGROK=true
 ./deploy.sh
-./apply-use-case.sh ./config/4-configure-migrating-to-passwordless.xml
+./apply-use-case.sh ./config/4-configure-migrating-to-passkeys.xml
 ```
 
-The [Migrating to Passwordless Behavior](doc/4-migrating-to-passwordless-behavior.md) document explains this flow and its associated data.
+The [Migrating to Passkeys Behavior](doc/4-migrating-to-passkeys.md) document explains this flow and its associated data.
 
 ## Free Resources
 
