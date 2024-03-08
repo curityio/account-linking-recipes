@@ -230,7 +230,7 @@
             <authenticator>
               <id>passkeys-existing</id>
               <account-domain>passkeys-domain</account-domain>
-              <required-authenticator-for-registration>htmlform</required-authenticator-for-registration>
+              <required-authenticator-for-registration>email</required-authenticator-for-registration>
               <passkeys xmlns="https://curity.se/ns/conf/authenticators/passkeys">
                 <account-manager>
                   <id>default-account-manager</id>
