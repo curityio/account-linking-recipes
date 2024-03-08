@@ -5,16 +5,6 @@
       <type xmlns:auth="https://curity.se/ns/conf/profile/authentication">auth:authentication-service</type>
       <settings>
         <authentication-service xmlns="https://curity.se/ns/conf/profile/authentication">
-          <account-domains>
-            <account-domain>
-              <id>local-domain</id>
-              <description>The domain that manages the main account record</description>
-            </account-domain>
-            <account-domain>
-              <id>passkeys-domain</id>
-              <description>A domain for linked passkey devices</description>
-            </account-domain>
-          </account-domains>
           <authentication-actions>
             <authentication-action>
               <id>debug</id>
@@ -207,7 +197,6 @@
             </authenticator>
             <authenticator>
               <id>htmlform</id>
-              <account-domain>local-domain</account-domain>
               <html-form xmlns="https://curity.se/ns/conf/authenticators/html-form">
                 <account-manager>default-account-manager</account-manager>
                 <credential-manager>default-credential-manager</credential-manager>
@@ -222,14 +211,12 @@
                 <login>load-transformer</login>
                 <login>passkeys-preregistered-users</login>
               </authentication-actions>
-              <account-domain>local-domain</account-domain>
               <required-authenticator-for-registration>email</required-authenticator-for-registration>
               <username xmlns="https://curity.se/ns/ext-conf/username">
               </username>
             </authenticator>
             <authenticator>
               <id>passkeys-existing</id>
-              <account-domain>passkeys-domain</account-domain>
               <required-authenticator-for-registration>email</required-authenticator-for-registration>
               <passkeys xmlns="https://curity.se/ns/conf/authenticators/passkeys">
                 <account-manager>
@@ -239,7 +226,6 @@
             </authenticator>
             <authenticator>
               <id>passkeys-new</id>
-              <account-domain>local-domain</account-domain>
               <required-authenticator-for-registration>email</required-authenticator-for-registration>
               <passkeys xmlns="https://curity.se/ns/conf/authenticators/passkeys">
                 <account-manager>
