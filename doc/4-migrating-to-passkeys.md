@@ -7,57 +7,73 @@ This enables existing users to upgrade from passwords to passkeys, with the same
 
 The following flow chart describes the desired behaviour of this flow.
 
-![Use case 4](../images/4-migrating-to-passwordless-behavior/flow.png)
+![Use case 4](../images/4-migrating-to-passkeys-behavior/flow.png)
 
 ## Example Scenario
 
 There are many security solutions that could be designed with passkeys.\
-In this scenario, internet users can either login with a password, or can upgrade to a passkey.
+In this scenario, internet users can either login with a password, or can upgrade to a passkey.\
+The scenario handles a number of different user types:
 
-## Authentication Selection
+| User Type | Description |
+| --------- | ----------- |
+| Existing Users (Passwords) | Users who continue to sign in with passwords after passkeys are enabled |
+| Existing Users (Passkeys) | Users who upgrade from passwords to passkeys when they are are enabled |
+| New Users (Passwords) | Future users who sign up and choose to use password logins |
+| New Users (Passkeys) | Future users who sign up and choose to use passkey logins |
+
+### Authentication Selection
 
 On every login a username authenticator is shown and the user provides their email.\
-This will only be typed on the initial login and then will be autofilled from a cookie:
+This is only typed on the initial login and is then autofilled from a cookie:
 
-![Passkeys Username](../images/4-migrating-to-passwordless-behavior/passkeys-username.jpg)
+![Passkeys Username](../images/4-migrating-to-passkeys-behavior/passkeys-username.png)
 
-A script action then runs to determine whether the user has a passkey registered.\
-If not then the user may choose how to sign in via a selector action.\
+A script action then runs to determine whether the user exists and has a passkey registered.\
+If the user does not have passkeys they can choose how to sign in via a selector action.\
 Users who don't want to use passkeys can continue to use passwords:
 
-![Authentication Selector](../images/4-migrating-to-passwordless-behavior/authentication-selector.jpg)
+![Authentication Selector](../images/4-migrating-to-passkeys-behavior/authentication-selector.png)
 
-## Existing Users
+### Existing Users
 
-When an existing user chooses to first login with a passkey, the user is prompted to register a passkey:
+When am existing user first chooses to sign in with a passkey, the user performs the passkey registration ceremony:
 
-![Register Passkey](../images/4-migrating-to-passwordless-behavior/register-passkey.jpg)
+![Register Passkey](../images/4-migrating-to-passkeys-behavior/register-passkey.jpg)
 
-To do so, the user must first authenticate via their current method:
+Before registering a passkey the user must authenticate by verifying their email:
 
-![Initial Login](../images/1-default-behavior/initial-login.jpg)
+![Verify Email](../images/4-migrating-to-passkeys-behavior/verify-email.png)
 
-Next, the browser uses operating system APIs to create a passkey.
-The user then sees the following screen and is considered authenticated when the proceed button is clicked:
+Next, the browser uses operating system APIs to create a passkey.\
+To register, the user simply clicks continue and then uses their device authentication method, e.g. a fingerprint or PIN.
 
-![Registered Passkey](../images/4-migrating-to-passwordless-behavior/registered-passkey.jpg)
+![System Dialog](../images/4-migrating-to-passkeys-behavior/system-dialog.png)
 
-On all future logins the username authenticator is displayed first, with the autofilled username.\
-If the user has a passkey registered, the selector screen is bypassed.\
-The user is simply prompted to use their device authentication method to sign in, e.g. a fingerprint or PIN.
+On all future logins the username authenticator is displayed and the authentication selector screen is bypassed.\
+The user again provides their device authentication method, e.g. a fingerprint or PIN, to prove they are present.
 
-## Future Users
+### New Users
 
-New users, whose email does not exist, can continue to onboard, with either passkeys or passwords.\
-Those who selected the password option will use the standard registration form and set a password:
+When a new user onboards, they first enter their email in the username authenticator.\
+If the account is not found, the user is presented with the authentication selection screen.\
+The user can choose either passkeys or passwords and in both cases must create an account.
 
-![Password Create Account](../images/1-default-behavior/create-account.jpg)
+### Roaming and Recovery
 
-Those who selected the passkeys option will instead use a custom registration form:
+Passkeys can be synchronized across multiple browsers and devices, though there are some technology limitations.\
+The current technology support is explained in the [Passkeys - Design your Solution](https://curity.io/resources/learn/passkeys-design-your-solution/) article.\
+You can enable a solution where the user can recover from any roaming or lost passkey scenario:
 
-![Passkeys Create Account](../images/4-migrating-to-passwordless-behavior/passkeys-create-account.jpg)
+- Passkey cannot be synchronized to a particular browser or device
+- User clears one or more passkeys from their browser
+- User gets a new computer or mobile device
 
-## Account Data
+To do so, the user simply performs the registration ceremony again.
+
+![Passkeys Recovery](../images/4-migrating-to-passkeys-behavior/passkeys-recovery.png)
+
+### Account Data
 
 After running this flow you can query the account data, as described in the [Default Behavior](./1-default-behavior.md) page.\
 The PostgreSQL data will contain a single account record for each user:
@@ -72,15 +88,9 @@ Passkeys are stored in a `devices` table, and a simplified form of the data is s
 | ---------- | --------- | ---- | --------- |
 | 65c4928a-4bab-11ed-bd06-0242ac120002 | 6f2761a2-6931-413d-8caa-00e4b4f015d3 | webauthn | pQECAyYgASF ... |
 
-## Account Recovery
+### Access Tokens
 
-When required, multiple passkeys can be registered by a user, and they are all linked to the same identity.\
-This enables the user to recover if they ever lose their existing passkey.\
-It also enables them to roam across devices when passkey synchronization is not supported.
-
-## Access Tokens
-
-Access tokens issued to applications will contain the same details and subject claim as previously.\
+For all users, access tokens issued to applications will contain the same values for the subject claim as previously.\
 So migrating to passkeys will have no impact on your OAuth-secured APIs:
 
 ```json
