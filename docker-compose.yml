@@ -14,6 +14,7 @@ services:
      - ./license.json:/opt/idsvr/etc/init/license/license.json
      - ./config/0-base-config.xml:/opt/idsvr/etc/init/config.xml
      - ./config/create-account.properties:/opt/idsvr/usr/share/messages/overrides/en/create-account.properties
+     - ./custom.properties:/opt/idsvr/usr/share/messages/overrides/en/custom.properties
     environment:
       ADMIN: 'true'
       LOGGING_LEVEL: 'INFO'

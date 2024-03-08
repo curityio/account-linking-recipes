@@ -9,11 +9,17 @@ The following flow chart describes the desired behaviour of this flow.
 
 ![Use case 4](../images/4-migrating-to-passkeys-behavior/flow.png)
 
-## Example Scenario
+Detailed information on migrating to passkeys is available in the following resources on the Curity website:
+
+- [What are Passkeys?](https://curity.io/resources/learn/what-are-passkeys/)
+- [Passkeys - Design your Solution](https://curity.io/resources/learn/passkeys-design-your-solution/)
+- [Migrating to Passkeys](https://curity.io/resources/learn/migrating-to-passwordless/)
+
+## Code Example Overview
 
 There are many security solutions that could be designed with passkeys.\
-In this scenario, internet users can either login with a password, or can upgrade to a passkey.\
-The scenario handles a number of different user types:
+In this scenario, internet users can choose to login with a password or can upgrade to a passkey.\
+The scenario reliably handles a number of different user types:
 
 | User Type | Description |
 | --------- | ----------- |
@@ -35,15 +41,20 @@ Users who don't want to use passkeys can continue to use passwords:
 
 ![Authentication Selector](../images/4-migrating-to-passkeys-behavior/authentication-selector.png)
 
-### Existing Users
+### Existing User Flow
 
-When am existing user first chooses to sign in with a passkey, the user performs the passkey registration ceremony:
+When an existing user first chooses to sign in with a passkey, the user performs the passkey registration ceremony:
 
-![Register Passkey](../images/4-migrating-to-passkeys-behavior/register-passkey.jpg)
+![Register Passkey](../images/4-migrating-to-passkeys-behavior/register-passkey.png)
 
-Before registering a passkey the user must authenticate by verifying their email:
+Before registering a passkey the user must authenticate:
 
 ![Verify Email](../images/4-migrating-to-passkeys-behavior/verify-email.png)
+
+In the example deployment this is done by simply clicking an email link.\
+Browse to `http://localhost:1080` to do so using the maildev tool.
+
+![Maildev](../images/4-migrating-to-passkeys-behavior/maildev.png)
 
 Next, the browser uses operating system APIs to create a passkey.\
 To register, the user simply clicks continue and then uses their device authentication method, e.g. a fingerprint or PIN.
@@ -53,11 +64,11 @@ To register, the user simply clicks continue and then uses their device authenti
 On all future logins the username authenticator is displayed and the authentication selector screen is bypassed.\
 The user again provides their device authentication method, e.g. a fingerprint or PIN, to prove they are present.
 
-### New Users
+### New User Flow
 
-When a new user onboards, they first enter their email in the username authenticator.\
-If the account is not found, the user is presented with the authentication selection screen.\
-The user can choose either passkeys or passwords and in both cases must create an account.
+New users also onboard by first entering their email in the username authenticator.\
+When an account is not found, the user is presented with the authentication selection screen.\
+The user must then create an account after which they can create a passkey or password.
 
 ### Roaming and Recovery
 
