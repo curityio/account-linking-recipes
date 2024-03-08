@@ -28,6 +28,7 @@ services:
     ports:
      - 5432:5432
     volumes:
+      - ./data:/var/lib/postgresql/data
       - ./data-backup.sql:/docker-entrypoint-initdb.d/data-backup.sql
     environment:
       POSTGRES_USER: 'postgres'

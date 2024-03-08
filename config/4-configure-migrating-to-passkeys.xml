@@ -223,7 +223,7 @@
                 <login>passkeys-preregistered-users</login>
               </authentication-actions>
               <account-domain>local-domain</account-domain>
-              <required-authenticator-for-registration>htmlform</required-authenticator-for-registration>
+              <required-authenticator-for-registration>email</required-authenticator-for-registration>
               <username xmlns="https://curity.se/ns/ext-conf/username">
               </username>
             </authenticator>
@@ -240,7 +240,7 @@
             <authenticator>
               <id>passkeys-new</id>
               <account-domain>local-domain</account-domain>
-              <required-authenticator-for-registration>username</required-authenticator-for-registration>
+              <required-authenticator-for-registration>email</required-authenticator-for-registration>
               <passkeys xmlns="https://curity.se/ns/conf/authenticators/passkeys">
                 <account-manager>
                   <id>default-account-manager</id>
@@ -357,7 +357,7 @@
       </transformation-procedure>
       <transformation-procedure>
         <id>passkeys-registration-transformer-proc</id>
-        <script>LyoqCiAqIFRoaXMgaXMgYW4gZXhhbXBsZSBwcm9jZWR1cmUgdGhhdCBwZXJmb3JtcyBubyB0cmFuc2Zvcm1hdGlvbgogKiBAcGFyYW0ge3NlLmN1cml0eS5pZGVudGl0eXNlcnZlci5wcm9jZWR1cmVzLmNvbnRleHQuVHJhbnNmb3JtYXRpb25Qcm9jZWR1cmVDb250ZXh0fSBjb250ZXh0CiAqIEByZXR1cm5zIHsqfQogKi8KZnVuY3Rpb24gcmVzdWx0KGNvbnRleHQpIHsKICB2YXIgYXR0cmlidXRlcyA9IGNvbnRleHQuYXR0cmlidXRlTWFwOwogIHZhciBhY3Rpb25BdHRyaWJ1dGVzID0gY29udGV4dC5hY3Rpb25BdHRyaWJ1dGVNYXA7CiAgCiAgYXR0cmlidXRlcy5lbWFpbCA9IGF0dHJpYnV0ZXMudXNlcm5hbWU7CiAgCiAgYXR0cmlidXRlcy5uYW1lID0ge307CiAgaWYgKGFjdGlvbkF0dHJpYnV0ZXNbImdpdmVuLW5hbWUiXSkgewogICAgYXR0cmlidXRlcy5uYW1lLmdpdmVuTmFtZSA9IGFjdGlvbkF0dHJpYnV0ZXNbImdpdmVuLW5hbWUiXTsKICB9CiAgaWYgKGFjdGlvbkF0dHJpYnV0ZXNbImZhbWlseS1uYW1lIl0pIHsKICAgIGF0dHJpYnV0ZXMubmFtZS5mYW1pbHlOYW1lID0gYWN0aW9uQXR0cmlidXRlc1siZmFtaWx5LW5hbWUiXTsKICB9CgogIGlmIChhY3Rpb25BdHRyaWJ1dGVzWyJwaG9uZS1udW1iZXIiXSkgewogICAgYXR0cmlidXRlcy5waG9uZSA9IGFjdGlvbkF0dHJpYnV0ZXNbInBob25lLW51bWJlciJdOwogIH0KICAKICByZXR1cm4gYXR0cmlidXRlczsKfQ==</script>
+        <script>LyoqCiAqIFRoaXMgaXMgYW4gZXhhbXBsZSBwcm9jZWR1cmUgdGhhdCBwZXJmb3JtcyBubyB0cmFuc2Zvcm1hdGlvbgogKiBAcGFyYW0ge3NlLmN1cml0eS5pZGVudGl0eXNlcnZlci5wcm9jZWR1cmVzLmNvbnRleHQuVHJhbnNmb3JtYXRpb25Qcm9jZWR1cmVDb250ZXh0fSBjb250ZXh0CiAqIEByZXR1cm5zIHsqfQogKi8KZnVuY3Rpb24gcmVzdWx0KGNvbnRleHQpIHsKICB2YXIgYXR0cmlidXRlcyA9IGNvbnRleHQuYXR0cmlidXRlTWFwOwogIHZhciBhY3Rpb25BdHRyaWJ1dGVzID0gY29udGV4dC5hY3Rpb25BdHRyaWJ1dGVNYXA7CiAgCiAgYXR0cmlidXRlcy5lbWFpbCA9IGF0dHJpYnV0ZXMudXNlcm5hbWU7CiAgCiAgYXR0cmlidXRlcy5uYW1lID0ge307CiAgaWYgKGFjdGlvbkF0dHJpYnV0ZXNbImdpdmVuLW5hbWUiXSkgewogICAgYXR0cmlidXRlcy5uYW1lLmdpdmVuTmFtZSA9IGFjdGlvbkF0dHJpYnV0ZXNbImdpdmVuLW5hbWUiXTsKICB9CiAgaWYgKGFjdGlvbkF0dHJpYnV0ZXNbImZhbWlseS1uYW1lIl0pIHsKICAgIGF0dHJpYnV0ZXMubmFtZS5mYW1pbHlOYW1lID0gYWN0aW9uQXR0cmlidXRlc1siZmFtaWx5LW5hbWUiXTsKICB9CgogIGlmIChhY3Rpb25BdHRyaWJ1dGVzWyJwaG9uZS1udW1iZXIiXSkgewogICAgYXR0cmlidXRlcy5waG9uZSA9IGFjdGlvbkF0dHJpYnV0ZXNbInBob25lLW51bWJlciJdOwogIH0KCiAgYXR0cmlidXRlcy5hY3RpdmUgPSB0cnVlOwogIHJldHVybiBhdHRyaWJ1dGVzOwp9</script>
       </transformation-procedure>
     </procedures>
   </processing>  
