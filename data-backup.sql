@@ -334,4 +334,3 @@ COMMENT ON COLUMN buckets.purpose IS 'The purpose of this bucket, eg. "login_att
 COMMENT ON COLUMN buckets.attributes IS 'All attributes stored for this subject/purpose';
 COMMENT ON COLUMN buckets.created IS 'When this bucket was created';
 COMMENT ON COLUMN buckets.updated IS 'When this bucket was last updated';
-

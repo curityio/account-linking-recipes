@@ -311,4 +311,48 @@
       </settings>
     </profile>
   </profiles>
+  <facilities xmlns="https://curity.se/ns/conf/base">
+    <data-sources>
+      <data-source>
+        <id>user-exists-datasource</id>
+        <jdbc xmlns="https://curity.se/ns/ext-conf/jdbc">
+          <attribute-query>SELECT count(1) as user_exists_count FROM accounts WHERE accounts.username = :subject;</attribute-query>
+          <connection-string>data:text/plain;aes,v:S.VndLWU5GQ2JpckNGMXVqQw==.C6rkQ8glHxDrptc-lgebRg==.cqnzW3VinCTg8DHI4dsBmB5FNYyT98-M6QQk40gdgyXmKSH7D0pguWL4wfDZlHjx.snQWwiEav52rxIEwbEBFRvvUeZm07119jL6JftpZrE4=</connection-string>
+          <standard-credentials-mode>
+          </standard-credentials-mode>
+          <driver>org.postgresql.Driver</driver>
+          <password>data:text/plain;aes,v:S.NkwzZXgxeGt4QTdPNmxtYw==.anW7aS4bSZLersMbUyURAg==.cX90z9NOVPH6qQ8N661afg==.EbKO52sgfzt4lj7zkNxxgRN6b79g2y08UxL9-Oh-L6Y=</password>
+          <username>postgres</username>
+        </jdbc>
+      </data-source>
+      <data-source>
+        <id>passkeys-datasource</id>
+        <jdbc xmlns="https://curity.se/ns/ext-conf/jdbc">
+          <attribute-query>SELECT count(1) as passkeys_count FROM devices JOIN accounts on accounts.account_id = devices.account_id where devices.device_type = 'webauthn' and accounts.username = :subject;</attribute-query>
+          <connection-string>data:text/plain;aes,v:S.eVBpNjlTazdGRE5PZEFXZA==.mtNKK6ErgcSal3xDSsTraQ==.zDXYG4H1pttNy8DdfHrc0gDf3WZVdv56gR0CI2GNIOAXjxGxoUnojdtfoT9NIrgv.CYluQKznOuNfORkx44lV34uY6Aqk2CxJEoSceICyL4A=</connection-string>
+          <standard-credentials-mode>
+          </standard-credentials-mode>
+          <driver>org.postgresql.Driver</driver>
+          <password>data:text/plain;aes,v:S.QXpHVDUwN25LeThkRWx5Uw==.lN4eT1-bSoGK4Sz8pWSu8A==.aNIG6PqsR3gHlafcf-QowA==.4Tsh8WmintGEW6JGLmi61-FVEgWV1-rCdV9l_5wMSyk=</password>
+          <username>postgres</username>
+        </jdbc>
+      </data-source>
+    </data-sources>
+  </facilities>
+  <processing xmlns="https://curity.se/ns/conf/base">
+    <procedures>
+      <transformation-procedure>
+        <id>first-factor-transformer-proc</id>
+        <script>LyoqCiAqIFRoaXMgaXMgYW4gZXhhbXBsZSBwcm9jZWR1cmUgdGhhdCBwZXJmb3JtcyBubyB0cmFuc2Zvcm1hdGlvbgogKiBAcGFyYW0ge3NlLmN1cml0eS5pZGVudGl0eXNlcnZlci5wcm9jZWR1cmVzLmNvbnRleHQuVHJhbnNmb3JtYXRpb25Qcm9jZWR1cmVDb250ZXh0fSBjb250ZXh0CiAqIEByZXR1cm5zIHsqfQogKi8KZnVuY3Rpb24gcmVzdWx0KGNvbnRleHQpIHsKICAgIHZhciBhdHRyaWJ1dGVzID0gY29udGV4dC5hdHRyaWJ1dGVNYXA7CgogICAgaWYgKGF0dHJpYnV0ZXMuc2VsZWN0ZWRfZmlyc3RfZmFjdG9yID09PSAncGFzc2tleXMnKSB7CgogICAgICAgIGlmIChhdHRyaWJ1dGVzLnVzZXJfZXhpc3RzX2NvdW50ID09IDApIHsKICAgICAgICAgICAgYXR0cmlidXRlcy5wYXNza2V5c19uZXcgPSB0cnVlOwogICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgIGF0dHJpYnV0ZXMucGFzc2tleXNfZXhpc3RpbmcgPSB0cnVlOwogICAgICAgIH0KCiAgICB9IGVsc2UgewogICAgICAgIGF0dHJpYnV0ZXMuaHRtbGZvcm0gPSB0cnVlOwogICAgfQoKICAgIHJldHVybiBhdHRyaWJ1dGVzOwp9</script>
+      </transformation-procedure>
+      <transformation-procedure>
+        <id>load-transformer-proc</id>
+        <script>LyoqCiAqIFRoaXMgaXMgYW4gZXhhbXBsZSBwcm9jZWR1cmUgdGhhdCBwZXJmb3JtcyBubyB0cmFuc2Zvcm1hdGlvbgogKiBAcGFyYW0ge3NlLmN1cml0eS5pZGVudGl0eXNlcnZlci5wcm9jZWR1cmVzLmNvbnRleHQuVHJhbnNmb3JtYXRpb25Qcm9jZWR1cmVDb250ZXh0fSBjb250ZXh0CiAqIEByZXR1cm5zIHsqfQogKi8KZnVuY3Rpb24gcmVzdWx0KGNvbnRleHQpIHsKICAKICAvLyBTZXQgdGhlIGJvb2xlYW4gZXhwZWN0ZWQgYnkgdGhlIHBhc3NrZXlzLWV4aXN0aW5nIE1GQSBjb25kaXRpb24KICB2YXIgYXR0cmlidXRlcyA9IGNvbnRleHQuYXR0cmlidXRlTWFwOwogIGF0dHJpYnV0ZXMucGFzc2tleXNfZXhpc3RpbmcgPSBhdHRyaWJ1dGVzLnBhc3NrZXlzX2NvdW50ID4gMDsKICByZXR1cm4gYXR0cmlidXRlczsKfQ==</script>
+      </transformation-procedure>
+      <transformation-procedure>
+        <id>passkeys-registration-transformer-proc</id>
+        <script>LyoqCiAqIFRoaXMgaXMgYW4gZXhhbXBsZSBwcm9jZWR1cmUgdGhhdCBwZXJmb3JtcyBubyB0cmFuc2Zvcm1hdGlvbgogKiBAcGFyYW0ge3NlLmN1cml0eS5pZGVudGl0eXNlcnZlci5wcm9jZWR1cmVzLmNvbnRleHQuVHJhbnNmb3JtYXRpb25Qcm9jZWR1cmVDb250ZXh0fSBjb250ZXh0CiAqIEByZXR1cm5zIHsqfQogKi8KZnVuY3Rpb24gcmVzdWx0KGNvbnRleHQpIHsKICB2YXIgYXR0cmlidXRlcyA9IGNvbnRleHQuYXR0cmlidXRlTWFwOwogIHZhciBhY3Rpb25BdHRyaWJ1dGVzID0gY29udGV4dC5hY3Rpb25BdHRyaWJ1dGVNYXA7CiAgCiAgYXR0cmlidXRlcy5lbWFpbCA9IGF0dHJpYnV0ZXMudXNlcm5hbWU7CiAgCiAgYXR0cmlidXRlcy5uYW1lID0ge307CiAgaWYgKGFjdGlvbkF0dHJpYnV0ZXNbImdpdmVuLW5hbWUiXSkgewogICAgYXR0cmlidXRlcy5uYW1lLmdpdmVuTmFtZSA9IGFjdGlvbkF0dHJpYnV0ZXNbImdpdmVuLW5hbWUiXTsKICB9CiAgaWYgKGFjdGlvbkF0dHJpYnV0ZXNbImZhbWlseS1uYW1lIl0pIHsKICAgIGF0dHJpYnV0ZXMubmFtZS5mYW1pbHlOYW1lID0gYWN0aW9uQXR0cmlidXRlc1siZmFtaWx5LW5hbWUiXTsKICB9CgogIGlmIChhY3Rpb25BdHRyaWJ1dGVzWyJwaG9uZS1udW1iZXIiXSkgewogICAgYXR0cmlidXRlcy5waG9uZSA9IGFjdGlvbkF0dHJpYnV0ZXNbInBob25lLW51bWJlciJdOwogIH0KICAKICByZXR1cm4gYXR0cmlidXRlczsKfQ==</script>
+      </transformation-procedure>
+    </procedures>
+  </processing>  
 </data>
