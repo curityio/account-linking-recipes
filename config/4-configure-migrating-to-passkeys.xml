@@ -145,19 +145,6 @@
               <debug-attribute xmlns="https://curity.se/ns/ext-conf/debug-attribute"/>
             </authentication-action>
             <authentication-action>
-              <id>trigger-email-authenticator</id>
-              <multi-factor-condition xmlns="https://curity.se/ns/ext-conf/multi-factor-condition">
-                <client-property-condition>
-                  <condition>
-                    <condition-script>dHJ1ZQ==</condition-script>
-                    <second-factor>
-                      <id>email</id>
-                    </second-factor>
-                  </condition>
-                </client-property-condition>
-              </multi-factor-condition>
-            </authentication-action>
-            <authentication-action>
               <id>trigger-passkeys-authenticator</id>
               <multi-factor-condition xmlns="https://curity.se/ns/ext-conf/multi-factor-condition">
                 <client-property-condition>
