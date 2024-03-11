@@ -15,8 +15,8 @@
               <switch xmlns="https://curity.se/ns/ext-conf/switch">
                 <case>
                   <name>password</name>
-                  <condition-script>YXR0cmlidXRlcy5hY3Rpb24uaHRtbGZvcm0=</condition-script>
-                  <action>htmlform-authenticator-condition</action>
+                  <condition-script>YXR0cmlidXRlcy5hY3Rpb24ucGFzc3dvcmQ=</condition-script>
+                  <action>password-authenticator-condition</action>
                 </case>
                 <case>
                   <name>passkeys-existing</name>
@@ -61,13 +61,13 @@
               </script-transformer>
             </authentication-action>
             <authentication-action>
-              <id>htmlform-authenticator-condition</id>
+              <id>password-authenticator-condition</id>
               <multi-factor-condition xmlns="https://curity.se/ns/ext-conf/multi-factor-condition">
                 <attribute-enable-condition>
                   <second-factor>
                     <id>htmlform</id>
                   </second-factor>
-                  <attribute-name>htmlform</attribute-name>
+                  <attribute-name>password</attribute-name>
                   <attribute-source>action-attributes</attribute-source>
                 </attribute-enable-condition>
               </multi-factor-condition>
@@ -115,7 +115,7 @@
               <multi-factor-condition xmlns="https://curity.se/ns/ext-conf/multi-factor-condition">
                 <attribute-enable-condition>
                   <second-factor>
-                    <id>passkeys-existing</id>
+                    <id>passkeys</id>
                   </second-factor>
                   <attribute-name>passkeys_existing</attribute-name>
                   <attribute-source>action-attributes</attribute-source>
@@ -127,7 +127,7 @@
               <multi-factor-condition xmlns="https://curity.se/ns/ext-conf/multi-factor-condition">
                 <attribute-enable-condition>
                   <second-factor>
-                    <id>passkeys-new</id>
+                    <id>passkeys</id>
                   </second-factor>
                   <attribute-name>passkeys_new</attribute-name>
                   <attribute-source>action-attributes</attribute-source>
@@ -216,16 +216,7 @@
               </username>
             </authenticator>
             <authenticator>
-              <id>passkeys-existing</id>
-              <required-authenticator-for-registration>email</required-authenticator-for-registration>
-              <passkeys xmlns="https://curity.se/ns/conf/authenticators/passkeys">
-                <account-manager>
-                  <id>default-account-manager</id>
-                </account-manager>
-              </passkeys>
-            </authenticator>
-            <authenticator>
-              <id>passkeys-new</id>
+              <id>passkeys</id>
               <required-authenticator-for-registration>email</required-authenticator-for-registration>
               <passkeys xmlns="https://curity.se/ns/conf/authenticators/passkeys">
                 <account-manager>
@@ -335,7 +326,7 @@
     <procedures>
       <transformation-procedure>
         <id>first-factor-transformer-proc</id>
-        <script>LyoqCiAqIFRoaXMgaXMgYW4gZXhhbXBsZSBwcm9jZWR1cmUgdGhhdCBwZXJmb3JtcyBubyB0cmFuc2Zvcm1hdGlvbgogKiBAcGFyYW0ge3NlLmN1cml0eS5pZGVudGl0eXNlcnZlci5wcm9jZWR1cmVzLmNvbnRleHQuVHJhbnNmb3JtYXRpb25Qcm9jZWR1cmVDb250ZXh0fSBjb250ZXh0CiAqIEByZXR1cm5zIHsqfQogKi8KZnVuY3Rpb24gcmVzdWx0KGNvbnRleHQpIHsKICAgIHZhciBhdHRyaWJ1dGVzID0gY29udGV4dC5hdHRyaWJ1dGVNYXA7CgogICAgaWYgKGF0dHJpYnV0ZXMuc2VsZWN0ZWRfZmlyc3RfZmFjdG9yID09PSAncGFzc2tleXMnKSB7CgogICAgICAgIGlmIChhdHRyaWJ1dGVzLnVzZXJfZXhpc3RzX2NvdW50ID09IDApIHsKICAgICAgICAgICAgYXR0cmlidXRlcy5wYXNza2V5c19uZXcgPSB0cnVlOwogICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgIGF0dHJpYnV0ZXMucGFzc2tleXNfZXhpc3RpbmcgPSB0cnVlOwogICAgICAgIH0KCiAgICB9IGVsc2UgewogICAgICAgIGF0dHJpYnV0ZXMuaHRtbGZvcm0gPSB0cnVlOwogICAgfQoKICAgIHJldHVybiBhdHRyaWJ1dGVzOwp9</script>
+        <script>LyoqCiAqIFRoaXMgaXMgYW4gZXhhbXBsZSBwcm9jZWR1cmUgdGhhdCBwZXJmb3JtcyBubyB0cmFuc2Zvcm1hdGlvbgogKiBAcGFyYW0ge3NlLmN1cml0eS5pZGVudGl0eXNlcnZlci5wcm9jZWR1cmVzLmNvbnRleHQuVHJhbnNmb3JtYXRpb25Qcm9jZWR1cmVDb250ZXh0fSBjb250ZXh0CiAqIEByZXR1cm5zIHsqfQogKi8KZnVuY3Rpb24gcmVzdWx0KGNvbnRleHQpIHsKICAgIHZhciBhdHRyaWJ1dGVzID0gY29udGV4dC5hdHRyaWJ1dGVNYXA7CgogICAgaWYgKGF0dHJpYnV0ZXMuc2VsZWN0ZWRfZmlyc3RfZmFjdG9yID09PSAncGFzc2tleXMnKSB7CgogICAgICAgIGlmIChhdHRyaWJ1dGVzLnVzZXJfZXhpc3RzX2NvdW50ID09IDApIHsKICAgICAgICAgICAgYXR0cmlidXRlcy5wYXNza2V5c19uZXcgPSB0cnVlOwogICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgIGF0dHJpYnV0ZXMucGFzc2tleXNfZXhpc3RpbmcgPSB0cnVlOwogICAgICAgIH0KCiAgICB9IGVsc2UgewogICAgICAgIGF0dHJpYnV0ZXMucGFzc3dvcmQgPSB0cnVlOwogICAgfQoKICAgIHJldHVybiBhdHRyaWJ1dGVzOwp9</script>
       </transformation-procedure>
       <transformation-procedure>
         <id>load-transformer-proc</id>
