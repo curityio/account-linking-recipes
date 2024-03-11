@@ -23,13 +23,6 @@
               </switch>
             </authentication-action>
             <authentication-action>
-              <id>1-load-transformer</id>
-              <script-transformer xmlns="https://curity.se/ns/ext-conf/script-transformer">
-                <attributes-location>action-attributes</attributes-location>
-                <transformation-procedure>1-load-transformer-proc</transformation-procedure>
-              </script-transformer>
-            </authentication-action>
-            <authentication-action>
               <id>1-load-passkeys-query</id>
               <data-source-transformer xmlns="https://curity.se/ns/ext-conf/data-source-transformer">
                 <attribute-data-source>
@@ -44,7 +37,6 @@
               <sequence xmlns="https://curity.se/ns/ext-conf/sequence">
                 <action>1-load-user-exists-query</action>
                 <action>1-load-passkeys-query</action>
-                <action>1-load-transformer</action>
                 <action>1-load-authenticator-switch</action>
               </sequence>
             </authentication-action>
@@ -77,7 +69,6 @@
               <id>2-authentication-selector-sequence</id>
               <sequence xmlns="https://curity.se/ns/ext-conf/sequence">
                 <action>2-authentication-selector</action>
-                <action>2-authentication-selector-transformer</action>
                 <action>2-authentication-selector-switch</action>
               </sequence>
             </authentication-action>
@@ -100,13 +91,6 @@
                   <action>3-passkeys-registration-sequence</action>
                 </case>
               </switch>
-            </authentication-action>
-            <authentication-action>
-              <id>2-authentication-selector-transformer</id>
-              <script-transformer xmlns="https://curity.se/ns/ext-conf/script-transformer">
-                <attributes-location>action-attributes</attributes-location>
-                <transformation-procedure>2-authentication-selector-transformer-proc</transformation-procedure>
-              </script-transformer>
             </authentication-action>
             <authentication-action>
               <id>3-passkeys-registration-create-account</id>
@@ -161,27 +145,42 @@
               <debug-attribute xmlns="https://curity.se/ns/ext-conf/debug-attribute"/>
             </authentication-action>
             <authentication-action>
+              <id>trigger-email-authenticator</id>
+              <multi-factor-condition xmlns="https://curity.se/ns/ext-conf/multi-factor-condition">
+                <client-property-condition>
+                  <condition>
+                    <condition-script>dHJ1ZQ==</condition-script>
+                    <second-factor>
+                      <id>email</id>
+                    </second-factor>
+                  </condition>
+                </client-property-condition>
+              </multi-factor-condition>
+            </authentication-action>
+            <authentication-action>
               <id>trigger-passkeys-authenticator</id>
               <multi-factor-condition xmlns="https://curity.se/ns/ext-conf/multi-factor-condition">
-                <attribute-enable-condition>
-                  <second-factor>
-                    <id>passkeys</id>
-                  </second-factor>
-                  <attribute-name>uses_passkey_logins</attribute-name>
-                  <attribute-source>action-attributes</attribute-source>
-                </attribute-enable-condition>
+                <client-property-condition>
+                  <condition>
+                    <condition-script>dHJ1ZQ==</condition-script>
+                    <second-factor>
+                      <id>passkeys</id>
+                    </second-factor>
+                  </condition>
+                </client-property-condition>
               </multi-factor-condition>
             </authentication-action>
             <authentication-action>
               <id>trigger-password-authenticator</id>
               <multi-factor-condition xmlns="https://curity.se/ns/ext-conf/multi-factor-condition">
-                <attribute-enable-condition>
-                  <second-factor>
-                    <id>htmlform</id>
-                  </second-factor>
-                  <attribute-name>uses_password_logins</attribute-name>
-                  <attribute-source>action-attributes</attribute-source>
-                </attribute-enable-condition>
+                <client-property-condition>
+                  <condition>
+                    <condition-script>dHJ1ZQ==</condition-script>
+                    <second-factor>
+                      <id>passwords</id>
+                    </second-factor>
+                  </condition>
+                </client-property-condition>
               </multi-factor-condition>
             </authentication-action>
           </authentication-actions>
@@ -193,7 +192,7 @@
               </email>
             </authenticator>
             <authenticator>
-              <id>htmlform</id>
+              <id>passwords</id>
               <html-form xmlns="https://curity.se/ns/conf/authenticators/html-form">
                 <account-manager>default-account-manager</account-manager>
                 <credential-manager>default-credential-manager</credential-manager>
@@ -318,14 +317,6 @@
   </facilities>
   <processing xmlns="https://curity.se/ns/conf/base">
     <procedures>
-      <transformation-procedure>
-        <id>1-load-transformer-proc</id>
-        <script>LyoqCiAqIFRoaXMgaXMgYW4gZXhhbXBsZSBwcm9jZWR1cmUgdGhhdCBwZXJmb3JtcyBubyB0cmFuc2Zvcm1hdGlvbgogKiBAcGFyYW0ge3NlLmN1cml0eS5pZGVudGl0eXNlcnZlci5wcm9jZWR1cmVzLmNvbnRleHQuVHJhbnNmb3JtYXRpb25Qcm9jZWR1cmVDb250ZXh0fSBjb250ZXh0CiAqIEByZXR1cm5zIHsqfQogKi8KZnVuY3Rpb24gcmVzdWx0KGNvbnRleHQpIHsKICAKICB2YXIgYXR0cmlidXRlcyA9IGNvbnRleHQuYXR0cmlidXRlTWFwOwogIGlmIChhdHRyaWJ1dGVzLnVzZXJfZXhpc3RzX2NvdW50ID4gMCAmJiBhdHRyaWJ1dGVzLnBhc3NrZXlzX2NvdW50ID4gMCkgewogICAgYXR0cmlidXRlcy51c2VzX3Bhc3NrZXlfbG9naW5zID0gdHJ1ZTsKICB9CgogIHJldHVybiBhdHRyaWJ1dGVzOwp9</script>
-      </transformation-procedure>
-      <transformation-procedure>
-        <id>2-authentication-selector-transformer-proc</id>
-        <script>LyoqCiAqIFRoaXMgaXMgYW4gZXhhbXBsZSBwcm9jZWR1cmUgdGhhdCBwZXJmb3JtcyBubyB0cmFuc2Zvcm1hdGlvbgogKiBAcGFyYW0ge3NlLmN1cml0eS5pZGVudGl0eXNlcnZlci5wcm9jZWR1cmVzLmNvbnRleHQuVHJhbnNmb3JtYXRpb25Qcm9jZWR1cmVDb250ZXh0fSBjb250ZXh0CiAqIEByZXR1cm5zIHsqfQogKi8KZnVuY3Rpb24gcmVzdWx0KGNvbnRleHQpIHsKICAKICB2YXIgYXR0cmlidXRlcyA9IGNvbnRleHQuYXR0cmlidXRlTWFwOwogIGlmIChhdHRyaWJ1dGVzLnNlbGVjdGVkX2F1dGhlbnRpY2F0b3IgPT09ICdwYXNzd29yZCcpIHsKICAgICAgYXR0cmlidXRlcy51c2VzX3Bhc3N3b3JkX2xvZ2lucyA9IHRydWU7CiAgfSBlbHNlIHsKICAgICAgYXR0cmlidXRlcy51c2VzX3Bhc3NrZXlfbG9naW5zID0gdHJ1ZTsKICB9CgogIHJldHVybiBhdHRyaWJ1dGVzOwp9</script>
-      </transformation-procedure>
       <transformation-procedure>
         <id>3-passkeys-registration-transformer-proc</id>
         <script>LyoqCiAqIFRoaXMgaXMgYW4gZXhhbXBsZSBwcm9jZWR1cmUgdGhhdCBwZXJmb3JtcyBubyB0cmFuc2Zvcm1hdGlvbgogKiBAcGFyYW0ge3NlLmN1cml0eS5pZGVudGl0eXNlcnZlci5wcm9jZWR1cmVzLmNvbnRleHQuVHJhbnNmb3JtYXRpb25Qcm9jZWR1cmVDb250ZXh0fSBjb250ZXh0CiAqIEByZXR1cm5zIHsqfQogKi8KZnVuY3Rpb24gcmVzdWx0KGNvbnRleHQpIHsKICB2YXIgYXR0cmlidXRlcyA9IGNvbnRleHQuYXR0cmlidXRlTWFwOwogIHZhciBhY3Rpb25BdHRyaWJ1dGVzID0gY29udGV4dC5hY3Rpb25BdHRyaWJ1dGVNYXA7CiAgCiAgYXR0cmlidXRlcy5lbWFpbCA9IGF0dHJpYnV0ZXMudXNlcm5hbWU7CiAgCiAgYXR0cmlidXRlcy5uYW1lID0ge307CiAgaWYgKGFjdGlvbkF0dHJpYnV0ZXNbImdpdmVuLW5hbWUiXSkgewogICAgYXR0cmlidXRlcy5uYW1lLmdpdmVuTmFtZSA9IGFjdGlvbkF0dHJpYnV0ZXNbImdpdmVuLW5hbWUiXTsKICB9CiAgaWYgKGFjdGlvbkF0dHJpYnV0ZXNbImZhbWlseS1uYW1lIl0pIHsKICAgIGF0dHJpYnV0ZXMubmFtZS5mYW1pbHlOYW1lID0gYWN0aW9uQXR0cmlidXRlc1siZmFtaWx5LW5hbWUiXTsKICB9CgogIGlmIChhY3Rpb25BdHRyaWJ1dGVzWyJwaG9uZS1udW1iZXIiXSkgewogICAgICBhdHRyaWJ1dGVzLnBob25lTnVtYmVycyA9IFt7IHZhbHVlOiBhY3Rpb25BdHRyaWJ1dGVzWyJwaG9uZS1udW1iZXIiXSwgcHJpbWFyeTogdHJ1ZSB9XTsKICB9CgogIGF0dHJpYnV0ZXMuYWN0aXZlID0gdHJ1ZTsKICByZXR1cm4gYXR0cmlidXRlczsKfQ==</script>
