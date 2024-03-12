@@ -7,7 +7,7 @@
         <authentication-service xmlns="https://curity.se/ns/conf/profile/authentication">
           <authentication-actions>
             <authentication-action>
-              <id>1-load-authenticator-switch</id>
+              <id>user-routing-switch</id>
               <switch xmlns="https://curity.se/ns/ext-conf/switch">
                 <case>
                   <name>user-has-passkeys</name>
@@ -17,13 +17,13 @@
                 <case>
                   <name>user-has-no-passkeys</name>
                   <condition-script>YXR0cmlidXRlcy5hY3Rpb24ucGFzc2tleXNfY291bnQgPT0gMA==</condition-script>
-                  <action>2-authentication-selector-sequence</action>
+                  <action>user-routing-authentication-selector-sequence</action>
                 </case>
                 <fail-if-no-match>true</fail-if-no-match>
               </switch>
             </authentication-action>
             <authentication-action>
-              <id>1-load-passkeys-query</id>
+              <id>user-routing-passkeys-query</id>
               <data-source-transformer xmlns="https://curity.se/ns/ext-conf/data-source-transformer">
                 <attribute-data-source>
                   <data-source>passkeys-datasource</data-source>
@@ -33,15 +33,15 @@
               </data-source-transformer>
             </authentication-action>
             <authentication-action>
-              <id>1-load-sequence</id>
+              <id>user-routing-sequence</id>
               <sequence xmlns="https://curity.se/ns/ext-conf/sequence">
-                <action>1-load-user-exists-query</action>
-                <action>1-load-passkeys-query</action>
-                <action>1-load-authenticator-switch</action>
+                <action>user-routing-user-exists-query</action>
+                <action>user-routing-passkeys-query</action>
+                <action>user-routing-switch</action>
               </sequence>
             </authentication-action>
             <authentication-action>
-              <id>1-load-user-exists-query</id>
+              <id>user-routing-user-exists-query</id>
               <data-source-transformer xmlns="https://curity.se/ns/ext-conf/data-source-transformer">
                 <attribute-data-source>
                   <data-source>user-exists-datasource</data-source>
@@ -51,7 +51,14 @@
               </data-source-transformer>
             </authentication-action>
             <authentication-action>
-              <id>2-authentication-selector</id>
+              <id>user-routing-authentication-selector-sequence</id>
+              <sequence xmlns="https://curity.se/ns/ext-conf/sequence">
+                <action>user-routing-authentication-selector</action>
+                <action>user-routing-authentication-selector-switch</action>
+              </sequence>
+            </authentication-action>
+            <authentication-action>
+              <id>user-routing-authentication-selector</id>
               <selector xmlns="https://curity.se/ns/ext-conf/selector">
                 <attribute-name>selected_authenticator</attribute-name>
                 <option>
@@ -66,14 +73,7 @@
               </selector>
             </authentication-action>
             <authentication-action>
-              <id>2-authentication-selector-sequence</id>
-              <sequence xmlns="https://curity.se/ns/ext-conf/sequence">
-                <action>2-authentication-selector</action>
-                <action>2-authentication-selector-switch</action>
-              </sequence>
-            </authentication-action>
-            <authentication-action>
-              <id>2-authentication-selector-switch</id>
+              <id>user-routing-authentication-selector-switch</id>
               <switch xmlns="https://curity.se/ns/ext-conf/switch">
                 <case>
                   <name>password</name>
@@ -88,12 +88,12 @@
                 <case>
                   <name>passkeys-new</name>
                   <condition-script>YXR0cmlidXRlcy5hY3Rpb24uc2VsZWN0ZWRfYXV0aGVudGljYXRvciA9PT0gJ3Bhc3NrZXlzJyAmJiBhdHRyaWJ1dGVzLmFjdGlvbi51c2VyX2V4aXN0c19jb3VudCA9PT0gMA==</condition-script>
-                  <action>3-passkeys-registration-sequence</action>
+                  <action>passkeys-registration-sequence</action>
                 </case>
               </switch>
             </authentication-action>
             <authentication-action>
-              <id>3-passkeys-registration-create-account</id>
+              <id>passkeys-registration-create-account</id>
               <auto-create-account xmlns="https://curity.se/ns/ext-conf/auto-create-account">
                 <account-manager>
                   <id>default-account-manager</id>
@@ -104,7 +104,7 @@
               </auto-create-account>
             </authentication-action>
             <authentication-action>
-              <id>3-passkeys-registration-form</id>
+              <id>passkeys-registration-form</id>
               <attribute-prompt xmlns="https://curity.se/ns/ext-conf/attribute-prompt">
                 <required-attribute>
                   <name>given-name</name>
@@ -126,18 +126,18 @@
               </attribute-prompt>
             </authentication-action>
             <authentication-action>
-              <id>3-passkeys-registration-sequence</id>
+              <id>passkeys-registration-sequence</id>
               <sequence xmlns="https://curity.se/ns/ext-conf/sequence">
-                <action>3-passkeys-registration-form</action>
-                <action>3-passkeys-registration-transformer</action>
-                <action>3-passkeys-registration-create-account</action>
+                <action>passkeys-registration-form</action>
+                <action>passkeys-registration-activate</action>
+                <action>passkeys-registration-create-account</action>
                 <action>trigger-passkeys-authenticator</action>
               </sequence>
             </authentication-action>
             <authentication-action>
-              <id>3-passkeys-registration-transformer</id>
+              <id>passkeys-registration-activate</id>
               <script-transformer xmlns="https://curity.se/ns/ext-conf/script-transformer">
-                <transformation-procedure>3-passkeys-registration-transformer-proc</transformation-procedure>
+                <transformation-procedure>passkeys-registration-activate-proc</transformation-procedure>
               </script-transformer>
             </authentication-action>
             <authentication-action>
@@ -189,7 +189,7 @@
             <authenticator>
               <id>username</id>
               <authentication-actions>
-                <login>1-load-sequence</login>
+                <login>user-routing-sequence</login>
               </authentication-actions>
               <required-authenticator-for-registration>email</required-authenticator-for-registration>
               <username xmlns="https://curity.se/ns/ext-conf/username">
@@ -305,7 +305,7 @@
   <processing xmlns="https://curity.se/ns/conf/base">
     <procedures>
       <transformation-procedure>
-        <id>3-passkeys-registration-transformer-proc</id>
+        <id>passkeys-registration-activate-proc</id>
         <script>LyoqCiAqIFRoaXMgaXMgYW4gZXhhbXBsZSBwcm9jZWR1cmUgdGhhdCBwZXJmb3JtcyBubyB0cmFuc2Zvcm1hdGlvbgogKiBAcGFyYW0ge3NlLmN1cml0eS5pZGVudGl0eXNlcnZlci5wcm9jZWR1cmVzLmNvbnRleHQuVHJhbnNmb3JtYXRpb25Qcm9jZWR1cmVDb250ZXh0fSBjb250ZXh0CiAqIEByZXR1cm5zIHsqfQogKi8KZnVuY3Rpb24gcmVzdWx0KGNvbnRleHQpIHsKICB2YXIgYXR0cmlidXRlcyA9IGNvbnRleHQuYXR0cmlidXRlTWFwOwogIHZhciBhY3Rpb25BdHRyaWJ1dGVzID0gY29udGV4dC5hY3Rpb25BdHRyaWJ1dGVNYXA7CiAgCiAgYXR0cmlidXRlcy5lbWFpbCA9IGF0dHJpYnV0ZXMudXNlcm5hbWU7CiAgCiAgYXR0cmlidXRlcy5uYW1lID0ge307CiAgaWYgKGFjdGlvbkF0dHJpYnV0ZXNbImdpdmVuLW5hbWUiXSkgewogICAgYXR0cmlidXRlcy5uYW1lLmdpdmVuTmFtZSA9IGFjdGlvbkF0dHJpYnV0ZXNbImdpdmVuLW5hbWUiXTsKICB9CiAgaWYgKGFjdGlvbkF0dHJpYnV0ZXNbImZhbWlseS1uYW1lIl0pIHsKICAgIGF0dHJpYnV0ZXMubmFtZS5mYW1pbHlOYW1lID0gYWN0aW9uQXR0cmlidXRlc1siZmFtaWx5LW5hbWUiXTsKICB9CgogIGlmIChhY3Rpb25BdHRyaWJ1dGVzWyJwaG9uZS1udW1iZXIiXSkgewogICAgICBhdHRyaWJ1dGVzLnBob25lTnVtYmVycyA9IFt7IHZhbHVlOiBhY3Rpb25BdHRyaWJ1dGVzWyJwaG9uZS1udW1iZXIiXSwgcHJpbWFyeTogdHJ1ZSB9XTsKICB9CgogIGF0dHJpYnV0ZXMuYWN0aXZlID0gdHJ1ZTsKICByZXR1cm4gYXR0cmlidXRlczsKfQ==</script>
       </transformation-procedure>
     </procedures>
