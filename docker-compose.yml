@@ -6,6 +6,7 @@ services:
   #
   curity-idsvr:
     image: curity.azurecr.io/curity/idsvr:latest
+    #image: curity/idsvr-unstable:86877efd4f
     hostname: identityserver
     ports:
      - 6749:6749
