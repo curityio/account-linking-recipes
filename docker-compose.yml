@@ -6,7 +6,6 @@ services:
   #
   curity-idsvr:
     image: curity.azurecr.io/curity/idsvr:latest
-    #image: curity/idsvr-unstable:9.1.0-25ae7d1d95
     hostname: identityserver
     ports:
      - 6749:6749
@@ -16,7 +15,6 @@ services:
      - ./config/0-base-config.xml:/opt/idsvr/etc/init/config.xml
      - ./config/create-account.properties:/opt/idsvr/usr/share/messages/overrides/en/create-account.properties
      - ./custom.properties:/opt/idsvr/usr/share/messages/overrides/en/custom.properties
-     #- ./identityserver.plugins.authenticators.username-1.3.1.jar:/opt/idsvr/lib/plugins/authenticators.username/identityserver.plugins.authenticators.username-1.3.1.jar
     environment:
       ADMIN: 'true'
       LOGGING_LEVEL: 'INFO'

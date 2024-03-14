@@ -62,7 +62,7 @@ The [External Account Identity Behavior](doc/3-external-account-behavior.md) doc
 
 This scenario demonstrates an opt-in migration from passwords to passkeys.\
 Users can upgrade to passkeys, or continue to use passwords if they prefer.\
-Dynamic behavior is used to identify the user's authentication method.
+The solution uses dynamic logic to identify the user's authentication method.
 
 ```bash
 export USE_NGROK=true

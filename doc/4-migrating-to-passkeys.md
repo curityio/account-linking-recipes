@@ -1,6 +1,6 @@
 # Migrating to Passkeys Behavior
 
-This page describes shows how logins with passkeys can be introduced in an opt-in manner.\
+This page shows how you can introduce logins with passkeys in an opt-in manner.\
 This enables existing users to upgrade from passwords to passkeys, with the same user identity.
 
 ## Requirements
@@ -17,8 +17,7 @@ Detailed information on migrating to passkeys is available in the following reso
 
 ## Code Example Overview
 
-There are many security solutions that could be designed with passkeys.\
-In this scenario, internet users can choose to login with a password or can upgrade to a passkey.\
+In this scenario, internet users can choose to log in with a password or can upgrade to a passkey.\
 The scenario reliably handles a number of different user types:
 
 | User Type | Description |
