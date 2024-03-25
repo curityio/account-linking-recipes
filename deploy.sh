@@ -37,7 +37,6 @@ cp ./hooks/pre-commit ./.git/hooks
 
 #
 # Force a teardown of postgres data so that on each install users must be created
-# This enables onboarding of new authentication methods to be tested repeatedly
 #
 rm -rf data
 mkdir data

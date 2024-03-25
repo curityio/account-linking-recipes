@@ -1,6 +1,9 @@
 version: '3.8'
 services:
 
+  #
+  # The Curity Identity Server is used for passkey logins
+  #
   curity-idsvr:
     image: curity.azurecr.io/curity/idsvr:latest
     hostname: identityserver
@@ -11,13 +14,17 @@ services:
      - ./license.json:/opt/idsvr/etc/init/license/license.json
      - ./config/0-base-config.xml:/opt/idsvr/etc/init/config.xml
      - ./config/create-account.properties:/opt/idsvr/usr/share/messages/overrides/en/create-account.properties
+     - ./custom.properties:/opt/idsvr/usr/share/messages/overrides/en/custom.properties
     environment:
       ADMIN: 'true'
-      LOGGING_LEVEL: 'DEBUG'
+      LOGGING_LEVEL: 'INFO'
       RUNTIME_BASE_URL: "${RUNTIME_BASE_URL}"
 
+  #
+  # A database where passkeys stored against user accounts can be queried
+  #
   curity-data:
-    image: postgres:14.5
+    image: postgres:latest
     hostname: dbserver
     ports:
      - 5432:5432
@@ -28,3 +35,15 @@ services:
       POSTGRES_USER: 'postgres'
       POSTGRES_PASSWORD: 'Password1'
       POSTGRES_DB: 'idsvr'
+
+  #
+  # A mock email server that allows email recovery flows for passkeys users
+  #
+  smtp-server:
+    image: maildev/maildev:latest
+    hostname: smtpserver
+    environment:
+      MAILDEV_INCOMING_USER: 'noreply@example.com'
+      MAILDEV_INCOMING_PASSWORD: 'Password1'
+    ports:
+      - 1080:1080
