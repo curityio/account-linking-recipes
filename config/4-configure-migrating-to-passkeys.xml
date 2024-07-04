@@ -199,6 +199,7 @@
               <id>passkeys</id>
               <required-authenticator-for-registration>email</required-authenticator-for-registration>
               <passkeys xmlns="https://curity.se/ns/conf/authenticators/passkeys">
+                <enable-discoverable-credentials>true</enable-discoverable-credentials>
                 <account-manager>
                   <id>default-account-manager</id>
                 </account-manager>
@@ -250,6 +251,30 @@
               <client>
                 <id>demo-web-client</id>
                 <client-name>demo-web-client</client-name>
+                <description>A web client that uses passkeys + passwords together with default behaviors</description>
+                <secret>Password1</secret>
+                <redirect-uris>https://oauth.tools/callback/code</redirect-uris>
+                <scope>openid</scope>
+                <user-authentication>
+                  <allowed-authenticators>passkeys</allowed-authenticators>
+                  <allowed-authenticators>passwords</allowed-authenticators>
+                  <allowed-post-logout-redirect-uris>https://oauth.tools</allowed-post-logout-redirect-uris>
+                </user-authentication>
+                <allowed-origins>https://oauth.tools</allowed-origins>
+                <capabilities>
+                  <code>
+                  </code>
+                  <introspection/>
+                </capabilities>
+                <use-pairwise-subject-identifiers>
+                  <sector-identifier>default</sector-identifier>
+                </use-pairwise-subject-identifiers>
+                <validate-port-on-loopback-interfaces>true</validate-port-on-loopback-interfaces>
+              </client>
+              <client>
+                <id>demo-web-client-advanced</id>
+                <client-name>demo-web-client-advanced</client-name>
+                <description>A web client that uses passkeys + passwords together with customized behaviors</description>
                 <secret>Password1</secret>
                 <redirect-uris>https://oauth.tools/callback/code</redirect-uris>
                 <scope>openid</scope>
