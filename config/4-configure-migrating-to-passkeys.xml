@@ -88,57 +88,30 @@
                 <case>
                   <name>passkeys-new</name>
                   <condition-script>YXR0cmlidXRlcy5hY3Rpb24uc2VsZWN0ZWRfYXV0aGVudGljYXRvciA9PT0gJ3Bhc3NrZXlzJyAmJiBhdHRyaWJ1dGVzLmFjdGlvbi51c2VyX2V4aXN0c19jb3VudCA9PT0gMA==</condition-script>
-                  <action>passkeys-registration-sequence</action>
+                  <action>passkeys-signup-form</action>
                 </case>
               </switch>
             </authentication-action>
             <authentication-action>
-              <id>passkeys-registration-create-account</id>
-              <auto-create-account xmlns="https://curity.se/ns/ext-conf/auto-create-account">
+              <id>passkeys-signup-form</id>
+              <signup xmlns="https://curity.se/ns/ext-conf/signup">
+                <authenticator>
+                  <signup-authenticator>
+                    <id>passkeys_register</id>
+                  </signup-authenticator>
+                </authenticator>
+                <signup-fields>
+                  <phone>
+                  </phone>
+                  <first-name>
+                  </first-name>
+                  <last-name>
+                  </last-name>
+                </signup-fields>
                 <account-manager>
                   <id>default-account-manager</id>
                 </account-manager>
-                <add-extra-attributes>true</add-extra-attributes>
-                <email-attribute>email</email-attribute>
-                <fail-on-conflicts>true</fail-on-conflicts>
-              </auto-create-account>
-            </authentication-action>
-            <authentication-action>
-              <id>passkeys-registration-form</id>
-              <attribute-prompt xmlns="https://curity.se/ns/ext-conf/attribute-prompt">
-                <required-attribute>
-                  <name>given-name</name>
-                  <attribute-source>action-attributes</attribute-source>
-                  <required>true</required>
-                  <type>text</type>
-                </required-attribute>
-                <required-attribute>
-                  <name>family-name</name>
-                  <attribute-source>action-attributes</attribute-source>
-                  <required>true</required>
-                  <type>text</type>
-                </required-attribute>
-                <required-attribute>
-                  <name>phone-number</name>
-                  <attribute-source>action-attributes</attribute-source>
-                  <type>tel</type>
-                </required-attribute>
-              </attribute-prompt>
-            </authentication-action>
-            <authentication-action>
-              <id>passkeys-registration-sequence</id>
-              <sequence xmlns="https://curity.se/ns/ext-conf/sequence">
-                <action>passkeys-registration-form</action>
-                <action>passkeys-registration-activate</action>
-                <action>passkeys-registration-create-account</action>
-                <action>trigger-passkeys-authenticator</action>
-              </sequence>
-            </authentication-action>
-            <authentication-action>
-              <id>passkeys-registration-activate</id>
-              <script-transformer xmlns="https://curity.se/ns/ext-conf/script-transformer">
-                <transformation-procedure>passkeys-registration-activate-proc</transformation-procedure>
-              </script-transformer>
+              </signup>
             </authentication-action>
             <authentication-action>
               <id>debug</id>
@@ -198,6 +171,16 @@
             <authenticator>
               <id>passkeys</id>
               <required-authenticator-for-registration>email</required-authenticator-for-registration>
+              <passkeys xmlns="https://curity.se/ns/conf/authenticators/passkeys">
+                <enable-discoverable-credentials>true</enable-discoverable-credentials>
+                <account-manager>
+                  <id>default-account-manager</id>
+                </account-manager>
+              </passkeys>
+            </authenticator>
+            <authenticator>
+              <id>passkeys_register</id>
+              <required-authentication-action-for-registration>passkeys-signup-form</required-authentication-action-for-registration>
               <passkeys xmlns="https://curity.se/ns/conf/authenticators/passkeys">
                 <enable-discoverable-credentials>true</enable-discoverable-credentials>
                 <account-manager>
