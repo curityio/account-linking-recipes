@@ -10,6 +10,12 @@ When required, the use of actions can scale to provide solutions to complex prob
 - Copy a license file for the Curity Identity Server to the root folder
 - Install the ngrok tool to enable the use of online OAuth Tools for testing
 
+Also, ensure that your computer's Curity Docker image is up to date:
+
+```bash
+docker pull curity.azurecr.io/curity/idsvr
+```
+
 ## Deployed System
 
 The deployed system uses as Admin UI at `https://localhost:6749/admin` with a login of `admin / Password1`.\
