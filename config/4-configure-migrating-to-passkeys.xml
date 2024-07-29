@@ -204,6 +204,7 @@
                 <account-manager>
                   <id>default-account-manager</id>
                 </account-manager>
+                <show-additional-informational-dialog>true</show-additional-informational-dialog>
               </passkeys>
             </authenticator>
           </authenticators>

@@ -4,7 +4,8 @@ services:
   # The Curity Identity Server is used for passkey logins
   #
   curity-idsvr:
-    image: curity.azurecr.io/curity/idsvr:latest
+    image: curity/idsvr-unstable:9.3.0-7564b764cb
+    #image: curity.azurecr.io/curity/idsvr:latest
     hostname: identityserver
     ports:
      - 6749:6749
