@@ -1,5 +1,8 @@
 # Account Linking Recipes
 
+[![Quality](https://img.shields.io/badge/quality-demo-red)](https://curity.io/resources/code-examples/status/)
+[![Availability](https://img.shields.io/badge/availability-source-blue)](https://curity.io/resources/code-examples/status/)
+
 Demonstrates techniques for handling user accounts and access token identities.\
 Once each recipe is understood, it can also be adapted to other authentication providers.\
 When required, the use of actions can scale to provide solutions to complex problems.
